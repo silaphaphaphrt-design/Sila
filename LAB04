@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+void Getdata(int **d, int *n);
+
+void printdata(int **det, int *N);
+
+int main() {
+    int *data, number;
+
+    printf("Enter number of member: ");
+    scanf("%d", &number);
+
+    Getdata(&data, &number);
+
+    printdata(&data, &number);
+
+    return 0;
+}
+
+void Getdata(int **d, int *n) {
+    for (int i = 0; i < *n; i++){
+        printf("[%d] ", i + 1);
+
+        scanf("%d", &(*d)[i]);
+        
+    }
+}
+
+void printdata(int **det, int *N) {
+    printf("Data is:");
+
+    for (int i = 0; i < *N; i++) {
+        printf(" %d", (*det)[i]);
+    }
+}
+-------------------------------------------
+Enter number of member: 5
+[1] 1412
+[2] 2932
+[3] 1290
+[4] 999
+[5] 33
+Data is: 1412 2932 1290 999 33
