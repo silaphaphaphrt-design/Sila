@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+void Made_arr(int ** arrP,int * rowP ,int * colP,int * sizeP);
+void GetMatrix(int ** arrdata,int * row,int * col,int * size);
+
+int main(){
+    int *data,m,n,s;
+    Made_arr(&data,&m,&n,&s);
+
+    GetMatrix(&data,&m,&n,&s);
+    
+    return 0;
+}
+
+void Made_arr(int **arrP,int * rowP ,int * colP,int * sizeP){
+    
+    printf("Plsese Enter number for row and col : ");
+    scanf("%d%d",rowP,colP);
+
+    *sizeP = (*rowP) * (*colP);
+    *arrP = new  int[*sizeP];
+
+}
+
+void GetMatrix(int ** arrdata,int * row,int * col,int * size){
+    for (int i = 0; i < *size; i++) {
+        printf("[%d] ",i+1);
+        scanf("%d",&(*arrdata)[i]);
+    }
+}
+---------------------------------------
+Plsese Enter number for row and col : 2 2
+[1] 3
+[2] 2
+[3] 4
+[4] 5
