@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+
+void reverse(char str[]) {
+    int len = strlen(str);
+    for(int i = 0; i < len / 2; i++) {
+        char temp = str[i];
+        str[i] = str[len - 1 - i];
+        str[len - 1 - i] = temp;
+    }
+}
+
+int main() {
+    char text1[50] = "I Love You";
+    printf("INPUT: %s\n", text1);
+    reverse(text1);
+    printf("OUTPUT: %s\n", text1);
+
+    char text2[50] = "Hello World";
+    printf("\nINPUT: %s\n", text2);
+    reverse(text2);
+    printf("INPUT: %s\n", text2);
+
+    return 0;
+}
+-----------------------------------------------
+Output:
+
+INPUT: I Love You
+OUTPUT: uoY evoL I
+
+INPUT: Hello World
+INPUT: dlroW olleH
