@@ -1,1 +1,57 @@
+#include <stdio.h>
+#include <string.h>
 
+
+int explode(char input_str[], char delimiter, char result_parts[][10], int max_parts) {
+    int part_count = 0;
+    int current_char_index = 0;
+    
+
+for (int i = 0; input_str[i] != '\0'; i++) {
+        if (input_str[i] == delimiter) {
+           result_parts[part_count][current_char_index] = '\0';
+            part_count++;
+            current_char_index = 0;
+      
+        if (part_count >= max_parts) {
+                return part_count;
+            }
+        } 
+        
+        else {
+          
+            if (current_char_index < 9) {
+                result_parts[part_count][current_char_index] = input_str[i];
+                current_char_index++;
+            }
+        }
+    }
+    
+    result_parts[part_count][current_char_index] = '\0';
+    part_count++;
+    
+    return part_count;
+}
+
+int main() {
+    char out[20][10];
+    int num;
+    
+    num = explode("I/Love/You", '/', out, 20);
+    
+    printf("Input: \"I/Love/You\", Splitter: '/'\n");
+    for (int i = 0; i < num; i++) {
+        printf("str2[%d] = \"%s\"\n", i, out[i]);
+    }
+    printf("count = %d\n", num);
+    
+    return 0;
+}
+-------------------------------------------------
+Output:
+
+Input: "I/Love/You", Splitter: '/'
+str2[0] = "I"
+str2[1] = "Love"
+str2[2] = "You"
+count = 3
