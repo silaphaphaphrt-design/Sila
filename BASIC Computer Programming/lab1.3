@@ -1,0 +1,71 @@
+#include <stdio.h>
+
+int main() {
+    
+    int num1, num2, operationCode; 
+    float result;
+
+    
+    if (scanf("%d %d %d", &num1, &num2, &operationCode) != 3) {
+        return 1;
+    }
+    printf("Input Numbers: %d and %d\n", num1, num2);
+    printf("Operation Code: %d\n", operationCode);
+    printf("Result: ");
+   
+    if (operationCode == 1) {
+        result = num1 + num2;
+        printf("%.2f\n", result);
+    } 
+    
+    else if (operationCode == 2) {
+        result = num1 - num2;
+        printf("%.2f\n", result);
+    } 
+   
+    else if (operationCode == 3) {
+        result = num1 * num2;
+        printf("%.2f\n", result);
+    } 
+   
+    else if (operationCode == 4) {
+       
+        if (num2 != 0) {
+            result = (float)num1 / num2; 
+            printf("%.2f\n", result);
+        } else {
+            printf("Error: Division by zero\n");
+        }
+    } 
+    
+    else {
+        printf("Invalid Operation\n");
+    }
+    
+   
+    return 0;
+ }
+ ------------------------------------------------------
+Output:
+
+Input Numbers: 10 and 5
+Operation Code: 1
+Result: 15.00
+--------------------------------------
+Output:
+
+Input Numbers: 20 and 4
+Operation Code: 3
+Result: 80.00
+----------------------------------------
+IOutput:
+
+Input Numbers: 15 and 4
+Operation Code: 4
+Result: 3.75
+-----------------------------------------
+Output:
+
+Input Numbers: 10 and 5
+Operation Code: 5
+Result: Invalid Operation
