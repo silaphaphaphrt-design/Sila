@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+    int N;
+    int sum = 0;
+    int i; 
+    
+    if (scanf("%d", &N) != 1 || N < 0) {
+        
+        printf("Invalid  Number.\n");
+        return 1; 
+    }
+
+    for (i = 1; i <= N; i++) {
+        sum = sum + i;
+    }
+
+    printf("Enter number is : %d \n ");
+    printf("Sum  %d is: %d", N, sum);
+
+    return 0; 
+}
+--------------------------------------------------------
+Output:
+
+Enter number is : 5 
+ Sum  5 is: 15
+--------------------------------------
+Output:
+
+Enter number is : 10 
+ Sum  10 is: 55
+---------------------------------------
+Output:
+
+Enter number is : 1 
+ Sum  1 is: 1
+---------------------------------------
+Output:
+
+Enter number is : 0 
+ Sum  0 is: 0
