@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+    int number;
+    int evenSum = 0;
+    int oddSum = 0; 
+    
+    scanf("%d", &number);
+
+    while (number != 0) {
+
+        if (number % 2 == 0) {
+            evenSum += number;
+        } else {
+            oddSum += number;
+        }
+
+        scanf("%d", &number);
+    }
+  
+   
+    printf("Even Sum: %d\n", evenSum);
+    printf("Odd Sum: %d\n", oddSum);
+
+    return 0;
+}
+----------------------------------------------
+Output:
+
+Even Sum: 6
+Odd Sum: 9
+-----------------------
+Output:
+
+Even Sum: 60
+Odd Sum: -1
+-----------------------
+Output:
+
+Even Sum: 0
+Odd Sum: 55
+-----------------------
