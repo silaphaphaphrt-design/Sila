@@ -35,6 +35,9 @@ struct student upgrade(struct student child) {
     else if (child.sex == 'F' || child.sex == 'f') {
         child.gpa = child.gpa * 1.20; 
     } 
+if (child.gpa > 4.00) {
+        child.gpa = 4.00;
+}
     return child;
 }
 ---------------------------------------------------------------------
