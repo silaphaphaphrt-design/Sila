@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+struct student {
+    char name[20];
+    int age;
+    char sex;
+    float gpa;
+};
+
+
+struct student upgrade(struct student child);
+
+int main() {
+    struct student aboy;
+    
+  
+    scanf("%s %d %c %f", aboy.name, &aboy.age, &aboy.sex, &aboy.gpa);
+
+
+    aboy = upgrade(aboy);
+
+    printf("Name: %s\n ",aboy.name);
+    printf("Age: %d\n ",aboy.age);
+    printf("Sex: %c\n ",aboy.sex);
+    printf("%.2f", aboy.gpa);
+
+    return 0;
+}
+
+struct student upgrade(struct student child) {
+    
+    if (child.sex == 'M' || child.sex == 'm') {
+        child.gpa = child.gpa * 1.10; 
+    } 
+    else if (child.sex == 'F' || child.sex == 'f') {
+        child.gpa = child.gpa * 1.20; 
+    }
+---------------------------------------------------------------------
+Output:
+
+Name: Time
+ Age: 19
+ Sex: M
+ GPA after upgrade: 2.20
+-------------------------------------------
+Output:
+
+Name: Jane
+ Age: 19
+ Sex: F
+ GPA after upgrade: 2.40
+    
+    return child;
+}
