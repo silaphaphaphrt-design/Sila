@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+int main() {
+    int zoneCode;
+    float weight_kg;
+    float totalCost = 0.0;
+
+    if (scanf("%d %f", &zoneCode, &weight_kg) != 2) {
+        return 1;
+    }
+
+    switch (zoneCode) {
+    case 1:
+         if (weight_kg <= 5)
+                totalCost = 50;
+         else
+                totalCost = 80;
+          break;
+
+      case 2:
+          if (weight_kg <= 10)
+                totalCost = 150;
+          else
+                totalCost = 250;
+           break;
+
+       case 3:
+            totalCost = 500;
+            break;
+
+    default:
+            printf("ZoneCode = %d\nWeight(kg) = %.1f\n", zoneCode, weight_kg);
+            printf("Invalid Zone Code");
+            return 0;
+    }
+    printf("ZoneCode = %d\nWeight(kg) = %.1f\n", zoneCode, weight_kg);
+    printf("%.2f Baht", totalCost);
+    return 0;
+}
+-----------------------------------------------------------------
+Output:
+
+ZoneCode = 1
+Weight(kg) = 2.5
+50.00 Baht
+-----------------------
+Output:
+
+ZoneCode = 2
+Weight(kg) = 15.0
+250.00 Baht
+-----------------------
+Output:
+
+ZoneCode = 3
+Weight(kg) = 5.0
+500.00 Baht
+-----------------------
+Output:
+
+ZoneCode = 4
+Weight(kg) = 10.0
+Invalid Zone Code
