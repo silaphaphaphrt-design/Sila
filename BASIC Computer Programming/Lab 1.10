@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int main() {
+    int clearanceLevel, age, isActive;
+
+    if (scanf("%d %d %d", &clearanceLevel, &age, &isActive) != 3) {
+        return 1;
+    }
+
+    if ((clearanceLevel == 3 && isActive == 1) ||
+        (clearanceLevel == 2 && age >= 25 && isActive == 1)) {
+
+        printf("Access Level : %d\n", clearanceLevel);
+        printf("Age : %d\n", age);
+        printf("Active : %d\n", isActive);
+        printf("Access Granted");
+    } else {
+       printf("Access Level : %d\n", clearanceLevel);
+        printf("Age : %d\n", age);
+        printf("Active : %d\n", isActive);
+        printf("Access Denied");
+    }
+
+    return 0;
+}
+-----------------------------------------------------------------
+Output:
+
+Access Level : 3
+Age : 30
+Active : 1
+Access Granted
+------------------------------
+Output:
+
+Access Level : 2
+Age : 25
+Active : 1
+Access Granted
+------------------------------
+Output:
+
+Access Level : 2
+Age : 20
+Active : 1
+Access Denied
+------------------------------
+Output:
+
+Access Level : 3
+Age : 30
+Active : 0
+Access Denied
