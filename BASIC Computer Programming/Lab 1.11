@@ -1,0 +1,61 @@
+#include <stdio.h>
+
+int main() {
+  int categoryCode;
+  float price_befor_vat;
+  float totalBill = 0.0;
+  float vatAmount = 0.0;
+  
+  if (scanf("%f %d", &price_befor_vat, &categoryCode) != 2){
+    return 1;
+  }
+  if (categoryCode == 1 ){
+    totalBill = price_befor_vat*1.07;
+  }
+    else if (categoryCode == 2){
+      totalBill = price_befor_vat;
+    }
+      else if (categoryCode == 3){
+        totalBill = price_befor_vat*1.15;     
+  }
+      
+  if (categoryCode >= 1 && categoryCode <=3){
+    vatAmount = totalBill - price_befor_vat;
+    printf("Price: %.2f\n", price_befor_vat);
+    printf("Category: %d\n", categoryCode);
+    printf("VAT Amount: %.2f\n", vatAmount);
+    printf("Total Price: %.2f\n", totalBill);
+    } else {
+      printf("Price: %.2f\n", price_befor_vat);
+      printf("Category: %d\n", categoryCode);
+      printf("invalid Category\n");
+    }
+    return 0;
+}
+--------------------------------------------------
+Output:
+
+Price: 1000.00
+Category: 1
+VAT Amount: 70.00
+Total Price: 1070.00
+----------------------------
+Output:
+
+Price: 500.00
+Category: 3
+VAT Amount: 75.00
+Total Price: 575.00
+----------------------------
+Output:
+
+Price: 200.00
+Category: 2
+VAT Amount: 0.00
+Total Price: 200.00
+----------------------------
+Output:
+
+Price: 50.00
+Category: 5
+invalid Category
