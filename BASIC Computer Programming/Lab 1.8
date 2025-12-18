@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+int main() {
+    int dayCode, hour;
+
+  if (scanf("%d %d", &dayCode, &hour) != 2) {
+        return 1;
+    }
+
+    switch (dayCode) {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        
+          if (hour >= 8 && hour <= 17) {
+                printf("day = %d, hour = %d\n", dayCode, hour);
+                printf("System Running (Workday)");
+            } else {
+                printf("day = %d, hour = %d\n", dayCode, hour);
+                printf("System Idle (Off-hours)");
+            }
+            break;
+
+        case 6:
+        case 7:
+            printf("day = %d, hour = %d\n", dayCode, hour);
+            printf("Weekend Relax Mode");
+            break;
+
+       default:
+            printf("day = %d, hour = %d\n", dayCode, hour);
+            printf("Invalid Day Code");
+    }
+
+    return 0;
+}
+-----------------------------------------------------------------------
+Output:
+
+day = 2, hour = 10
+System Running (Workday)
+--------------------------------
+Output:
+
+day = 1, hour = 20
+System Idle (Off-hours)
+--------------------------------
+Output:
+
+day = 6, hour = 15
+Weekend Relax Mode
+--------------------------------
+Output:
+
+day = 8, hour = 12
+Invalid Day Code
