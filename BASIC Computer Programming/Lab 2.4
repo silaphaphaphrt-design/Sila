@@ -1,0 +1,84 @@
+#include <stdio.h>
+
+int main() {
+  float principal, monthlyPayment, interest;
+  int monthCount = 0;
+  const float INTEREST_RATE = 0.01;
+  const float PENALTY = 10.0;
+
+   if (scanf("%f %f", &principal, &monthlyPayment) == 2) {
+    while (principal > 0) {
+      monthCount = monthCount + 1;
+      interest = principal * INTEREST_RATE;
+      principal = principal + interest;
+
+      if (monthlyPayment < interest) {
+            principal = principal + PENALTY;
+        }
+
+      principal = principal - monthlyPayment;
+        printf("Month %d: Remaining %.2f\n", monthCount, principal);
+
+            if (monthCount >= 10) {
+                break;
+            }
+        }
+
+    if (principal <= 0) {
+          printf("Loan settled in %d months.\n", monthCount);
+       } else {
+           printf("Loan settled in 10+ months.\n");
+        }
+    }
+
+    return 0;
+}
+
+--------------------------------------------------------------------
+Output:
+
+Month 1: Remaining 900.00
+Month 2: Remaining 799.00
+Month 3: Remaining 696.99
+Month 4: Remaining 593.96
+Month 5: Remaining 489.90
+Month 6: Remaining 384.80
+Month 7: Remaining 278.65
+Month 8: Remaining 171.43
+Month 9: Remaining 63.15
+Month 10: Remaining -46.22
+Loan settled in 10 months.
+-------------------------------------------
+Output:
+
+Month 1: Remaining 500.00
+Month 2: Remaining 500.00
+Month 3: Remaining 500.00
+Month 4: Remaining 500.00
+Month 5: Remaining 500.00
+Month 6: Remaining 500.00
+Month 7: Remaining 500.00
+Month 8: Remaining 500.00
+Month 9: Remaining 500.00
+Month 10: Remaining 500.00
+Loan settled in 10+ months.
+-------------------------------------------
+Output:
+
+Month 1: Remaining 1.00
+Month 2: Remaining -98.99
+Loan settled in 2 months.
+------------------------------------------
+Output:
+
+Month 1: Remaining 100000.00
+Month 2: Remaining 100000.00
+Month 3: Remaining 100000.00
+Month 4: Remaining 100000.00
+Month 5: Remaining 100000.00
+Month 6: Remaining 100000.00
+Month 7: Remaining 100000.00
+Month 8: Remaining 100000.00
+Month 9: Remaining 100000.00
+Month 10: Remaining 100000.00
+Loan settled in 10+ months.
