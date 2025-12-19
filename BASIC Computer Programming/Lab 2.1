@@ -1,0 +1,42 @@
+#include <stdio.h> 
+
+int main() {
+    int N, i;
+
+    if (scanf("%d", &N) == 1 && N > 0) {
+        printf("Input: %d\n", N);
+        for (i = 0; i < N; i++) {
+        printf("Hello Loop!\n");
+    }
+   } else {
+      printf("Input: %d\n", N);
+      printf("Error\n");
+    }
+    return 0;
+}
+--------------------------------------------------
+Output:
+
+Input: 3
+Hello Loop!
+Hello Loop!
+Hello Loop!
+----------------------
+Output:
+
+Input: 5
+Hello Loop!
+Hello Loop!
+Hello Loop!
+Hello Loop!
+Hello Loop!
+----------------------
+Output:
+
+Input: 0
+Error
+----------------------
+Output:
+
+Input: -2
+Error
