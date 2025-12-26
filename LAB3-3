@@ -7,37 +7,38 @@ struct student {
     float gpa;
 };
 
-
 struct student upgrade(struct student child);
 
 int main() {
     struct student aboy;
-    
-  
-    scanf("%s %d %c %f", aboy.name, &aboy.age, &aboy.sex, &aboy.gpa);
 
+    if (scanf("%s %d %c %f", aboy.name, &aboy.age, &aboy.sex, &aboy.gpa) == 4) {
+        aboy = upgrade(aboy);
 
-    aboy = upgrade(aboy);
-
-    printf("Name: %s\n ",aboy.name);
-    printf("Age: %d\n ",aboy.age);
-    printf("Sex: %c\n ",aboy.sex);
-    printf("%.2f", aboy.gpa);
+        printf("Name: %s\n", aboy.name);
+        printf("Age: %d\n", aboy.age);
+        printf("Sex: %c\n", aboy.sex);
+        printf("%.2f", aboy.gpa);
+    }
 
     return 0;
 }
 
 struct student upgrade(struct student child) {
-    
+    float bonus = 1.0f;
+
     if (child.sex == 'M' || child.sex == 'm') {
-        child.gpa = child.gpa * 1.10; 
-    } 
-    else if (child.sex == 'F' || child.sex == 'f') {
-        child.gpa = child.gpa * 1.20; 
-    } 
-if (child.gpa > 4.00) {
+        bonus = 1.10f;
+    } else if (child.sex == 'F' || child.sex == 'f') {
+        bonus = 1.20f;
+    }
+
+    child.gpa *= bonus;
+
+    if (child.gpa > 4.00) {
         child.gpa = 4.00;
-}
+    }
+
     return child;
 }
 ---------------------------------------------------------------------
