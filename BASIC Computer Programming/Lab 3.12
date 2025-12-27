@@ -1,0 +1,78 @@
+#include <stdio.h>
+
+int main() {
+    int N_CALCULATIONS, i;
+    int attkLvl, oppLvl, oppArmor;
+    float baseAttack, damageReduction, netDamage, damageDeficit;
+    const float WORTH_THRESHOLD = 150.0;
+    
+    
+    if (scanf("%d", &N_CALCULATIONS) != 1) {
+        return 1;
+    }
+    
+    
+    for (i = 0; i < N_CALCULATIONS; i++) {
+        
+        if (scanf("%d %d %d", &attkLvl, &oppLvl, &oppArmor) != 3) {
+            break;
+        }
+
+        
+        baseAttack = attkLvl * 10.0;
+
+        
+        if (oppArmor < 50) {
+            damageReduction = 0.20; 
+        } else {
+            damageReduction = 0.40; 
+        }
+
+        
+        netDamage = baseAttack * (1.0 - damageReduction);
+
+        
+        if (netDamage >= WORTH_THRESHOLD) {
+            printf("SUCCESS! Net Damage: %.2f\n", netDamage);
+        } else {
+            damageDeficit = WORTH_THRESHOLD - netDamage;
+            printf("FAIL. Deficit: %.2f\n", damageDeficit);
+        }
+    }
+    
+    return 0;
+}
+------------------------------------------------------------------------------------------------------------------
+4
+20 10 30
+25 15 50
+20 5 70
+15 8 10
+Output:
+
+SUCCESS! Net Damage: 160.00
+SUCCESS! Net Damage: 150.00
+FAIL. Deficit: 30.00
+FAIL. Deficit: 30.00
+------------------------------------
+2
+20 10 30
+25 15 50
+20 5 70
+15 8 10
+Output:
+
+SUCCESS! Net Damage: 160.00
+SUCCESS! Net Damage: 150.00
+------------------------------------
+1
+18 15 60
+Output:
+
+FAIL. Deficit: 42.00
+------------------------------------
+1
+15 8 10
+Output:
+
+FAIL. Deficit: 30.00
