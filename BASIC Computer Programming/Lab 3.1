@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+struct Product {
+    char name[50];
+    int productId;
+    float price;
+};
+
+int main() {
+    struct Product item;
+    
+    if (scanf("%d %f %s", &item.productId, &item.price, item.name) != 3) {
+        return 1;
+    }
+    printf("ID: %d, Price: %.2f, Name: %s\n", item.productId, item.price, item.name);
+
+    return 0;
+}
+---------------------------------------------------------------------
+101 500.50 Laptop
+Output:
+
+ID: 101, Price: 500.50, Name: Laptop
+---------------------------------------------
+205 10.00 Pen
+Output:
+
+ID: 205, Price: 10.00, Name: Pen
+---------------------------------------------
+333 999.99 Server
+Output:
+
+ID: 333, Price: 999.99, Name: Server
+---------------------------------------------
+4 0.5 Screw
+Output:
+
+ID: 4, Price: 0.50, Name: Screw
