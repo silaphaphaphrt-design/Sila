@@ -1,0 +1,89 @@
+#include <stdio.h>
+
+int main() {
+  int N_DAYS, day;
+  float initialBudget;
+  float remainingBudged;
+  float dailyspend;
+  
+  if (scanf("%f %d", &initialBudget, &N_DAYS) != 2) {
+    return 1;
+  }
+  remainingBudged = initialBudget;
+  
+  printf("Day | Spend | Remaining\n");
+  printf("-----------------------------\n");
+  
+  for (day = 1; day <= N_DAYS; day++) {
+    dailyspend = 0.0;
+    
+    if (remainingBudged >= 500.00) {
+      dailyspend = 100.00;
+    } else if (remainingBudged >= 100.00) {
+      dailyspend = 50.00;
+    }  else if (remainingBudged > 0.0) {
+      dailyspend = 20.00;
+    } else {
+      dailyspend = 0.0;
+    }
+    
+    if (dailyspend > remainingBudged){
+      dailyspend = remainingBudged;
+    }
+    remainingBudged -= dailyspend;
+    printf("%d | %.2f | %.2f\n", day, dailyspend, remainingBudged);
+  }
+  printf("-----------------------------\n");
+  printf("Final Budget: %.2f\n", remainingBudged);
+  return 0;
+}
+-------------------------------------------------------------------------------------
+700.00
+3
+Output:
+
+Day | Spend | Remaining
+-----------------------------
+1 | 100.00 | 600.00
+2 | 100.00 | 500.00
+3 | 100.00 | 400.00
+-----------------------------
+Final Budget: 400.00
+--------------------------------------------------
+180.00
+4
+Output:
+
+Day | Spend | Remaining
+-----------------------------
+1 | 50.00 | 130.00
+2 | 50.00 | 80.00
+3 | 20.00 | 60.00
+4 | 20.00 | 40.00
+-----------------------------
+Final Budget: 40.00
+--------------------------------------------------
+90
+5
+Output:
+
+Day | Spend | Remaining
+-----------------------------
+1 | 20.00 | 70.00
+2 | 20.00 | 50.00
+3 | 20.00 | 30.00
+4 | 20.00 | 10.00
+5 | 10.00 | 0.00
+-----------------------------
+Final Budget: 0.00
+--------------------------------------------------
+100.00
+2
+Output:
+
+Day | Spend | Remaining
+-----------------------------
+1 | 50.00 | 50.00
+2 | 20.00 | 30.00
+-----------------------------
+Final Budget: 30.00
