@@ -1,0 +1,71 @@
+#include <stdio.h>
+
+struct SaleRecord {
+  char name[50];
+  float target;
+  float actual;
+};
+
+int main() {
+  int N, i;
+  float grandTotalCommission = 0.0;
+  
+  if (scanf("%d", &N) != 1) {
+    return 1;
+  }
+  struct SaleRecord records[N];
+  
+  for (i = 0; i < N; i++) {
+    float baseCommission;
+    
+    if (scanf("%f %f %s", &records[i].target, &records[i].actual, records[i].name) != 3) {
+      return 1;
+    }
+    
+    baseCommission = records[i].actual * 0.10f;
+    
+    if (records[i].actual > records[i].target * 1.20f) {
+      baseCommission += 200.0f;
+    } else if (records[i].actual >= records[i].target) {
+      baseCommission += 50.0f;
+    } else if (records[i].actual < records[i].target * 0.90f) {
+      baseCommission -= 100.0f;
+    }
+    
+    grandTotalCommission += baseCommission;
+  }
+  
+  printf("Grand Total Commission: %.2f\n", grandTotalCommission);
+  
+  return 0;
+}
+----------------------------------------------------------------------------------------
+4
+1000.00 1250.00 Alice
+1000.00 1000.00 Bob
+1000.00 800.00 Charlie
+1000.00 950.00 David
+Output:
+
+Grand Total Commission: 550.00
+----------------------------------------
+2
+5000.00 6000.00 Eve
+5000.00 4499.00 Frank
+Output:
+
+Grand Total Commission: 999.90
+----------------------------------------
+3
+100.00 89.99 Grace
+100.00 120.00 Henry
+100.00 70.00 Iris
+Output:
+
+Grand Total Commission: -122.00
+----------------------------------------
+1
+10000.00 13000.00 John
+Output:
+
+Grand Total Commission: 1500.00
