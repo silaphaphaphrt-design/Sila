@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+struct Student {
+  char name[50];
+  int studentId;
+  float score;
+};
+
+int main() {
+  int N, i;
+  
+  if (scanf("%d", &N) != 1) {
+    return 1;
+  }
+
+  struct Student students[N];
+
+  for (i = 0; i < N; i++) {
+    if (scanf("%d %f %s", &students[i].studentId, &students[i].score, students[i].name) != 3) {
+      return 1;
+    }
+  }
+  for (i = 0; i < N; i++) { 
+    printf("ID: %d, Name: %s, Score: %.2f\n",
+      students[i].studentId,
+      students[i].name,
+      students[i].score);
+  }
+  return 0;
+}
+---------------------------------------------------------------
+2 101 58.5 Alice 202 70.0 Bob
+Output:
+
+ID: 101, Name: Alice, Score: 58.50
+ID: 202, Name: Bob, Score: 70.00
+----------------------------------------------
+3 301 60.0 Charlie 404 95.0 david 505 45.0 Eve
+Output:
+
+ID: 301, Name: Charlie, Score: 60.00
+ID: 404, Name: david, Score: 95.00
+ID: 505, Name: Eve, Score: 45.00
+----------------------------------------------
+1 1 100.0 Solo
+Output:
+
+ID: 1, Name: Solo, Score: 100.00
+----------------------------------------------
+4 11 88.8 A 22 77.7 B 33 66.6 C 44 55.5 D
+Output:
+
+ID: 11, Name: A, Score: 88.80
+ID: 22, Name: B, Score: 77.70
+ID: 33, Name: C, Score: 66.60
+ID: 44, Name: D, Score: 55.50
