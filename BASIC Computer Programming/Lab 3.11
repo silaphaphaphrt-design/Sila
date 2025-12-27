@@ -3,38 +3,41 @@
 int main() {
     int choice;
     float totalCost = 0.0;
-    float paidAmount;
-    float change;
-    
-    do {
-        printf("\n--- Vending Machine ---\n");
-        printf("1. Coke (15.00)\n");
-        printf("2. Water (10.00)\n");
-        printf("3. Snack (25.00)\n");
-        printf("4. Exit and Pay\n");
-        printf("Current Total: %.2f\n", totalCost);
-        
-        printf("Select item (1-4): ");
-        if (scanf("%d", &choice) != 1) {
-            break; 
-        }
-    } while (choice != 4);
-    
-    if (totalCost > 0.0) {
-        printf("Total due: %.2f\n", totalCost);
-        printf("Enter paid amount: ");
-        if (scanf("%f", &paidAmount) != 1) {
-            return 1;
-        }
+    float paidAmount, change;
 
+    while (1) {
+        printf("\n--- Vending Machine ---\n");
+        printf("1. Coke  (15.00)\n2. Water (10.00)\n3. Snack (25.00)\n4. Check out\n");
+        printf("Current Total: %.2f\n", totalCost);
+        printf("Select item: ");
+
+        if (scanf("%d", &choice) != 1) break;
+        if (choice == 4) break;
+
+        switch (choice) {
+            case 1: totalCost += 15.00; break;
+            case 2: totalCost += 10.00; break;
+            case 3: totalCost += 25.00; break;
+            default: printf("Invalid choice!\n");
+        }
+    }
+
+    if (totalCost <= 0) {
+        printf("\nNo items selected. Goodbye!\n");
+        return 0;
+    }
+
+    printf("\nTotal due: %.2f\n", totalCost);
+    printf("Enter paid amount: ");
+    
+    if (scanf("%f", &paidAmount) == 1) {
         if (paidAmount >= totalCost) {
             change = paidAmount - totalCost;
-            printf("Purchase successful. Change: %.2f\n", change);
+            printf("---------------------------\n");
+            printf("Success! Change: %.2f\n", change);
         } else {
-            printf("Insufficient payment. Purchase cancelled.\n");
+            printf("Error: Insufficient funds.\n");
         }
-    } else {
-        printf("No items purchased. Goodbye!\n");
     }
 
     return 0;
