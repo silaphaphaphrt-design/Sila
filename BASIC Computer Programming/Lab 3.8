@@ -1,0 +1,119 @@
+#include <stdio.h>
+
+struct Campaign {
+    char name[50];
+    float productPrice;
+    int salesCount;
+    float adSpend;
+};
+
+int main() {
+    int N, i;
+    
+    if (scanf("%d", &N) != 1) {
+        return 1;
+    }
+    
+    struct Campaign campaingns[N];
+    
+    for (i = 0; i < N; i++) {
+        float commissionRate = 0.0;
+        float totalRevenue;
+        float totalCommission;
+        float netProfitLoss;
+        
+        if (scanf("%s %f %d %f", 
+            campaingns[i].name,
+            &campaingns[i].productPrice,
+            &campaingns[i].salesCount,
+            &campaingns[i].adSpend) != 4) {
+            return 1;
+        }
+        
+        totalRevenue = (float)campaingns[i].salesCount * campaingns[i].productPrice;
+        
+        if (campaingns[i].salesCount >= 20) {
+            commissionRate = 0.20;
+        } else if (campaingns[i].salesCount >= 10) {
+            commissionRate = 0.15;
+        } else {
+            commissionRate = 0.10;
+        }
+        
+        totalCommission = totalRevenue * commissionRate;
+        netProfitLoss = totalCommission - campaingns[i].adSpend;
+        
+        printf("--- Campaign: %s ---\n", campaingns[i].name);
+        printf("Sales: %d, Ad Spend: %.2f\n", campaingns[i].salesCount, campaingns[i].adSpend);
+        printf("Rate Used: %.0f%%\n", commissionRate * 100);
+        printf("Calculation: (%.2f * %.0f%%) - %.2f = %.2f\n", 
+               totalRevenue, commissionRate * 100, campaingns[i].adSpend, netProfitLoss);
+        printf("Net Result: %.2f\n", netProfitLoss);
+    }
+    
+    return 0;
+}
+---------------------------------------------------------------------------------------------------------------------
+2
+SummerSale 100.00 25 300.00
+WinterLaunch 500.00 12 800.00
+Output:
+
+--- Campaign: SummerSale ---
+Sales: 25, Ad Spend: 300.00
+Rate Used: 20%
+Calculation: (2500.00 * 20%) - 300.00 = 200.00
+Net Result: 200.00
+--- Campaign: WinterLaunch ---
+Sales: 12, Ad Spend: 800.00
+Rate Used: 15%
+Calculation: (6000.00 * 15%) - 800.00 = 100.00
+Net Result: 100.00
+-----------------------------------------------------
+2
+LowVolume 50.00 5 30.00
+HightRisk 2000.00 30 10000.00
+Output:
+
+--- Campaign: LowVolume ---
+Sales: 5, Ad Spend: 30.00
+Rate Used: 10%
+Calculation: (250.00 * 10%) - 30.00 = -5.00
+Net Result: -5.00
+--- Campaign: HightRisk ---
+Sales: 30, Ad Spend: 10000.00
+Rate Used: 20%
+Calculation: (60000.00 * 20%) - 10000.00 = 2000.00
+Net Result: 2000.00
+-----------------------------------------------------
+3
+Border10 100.00 10 150.00
+Border20 100.00 19 250.00
+Zerisale 10.00 0 1.00
+Output:
+
+--- Campaign: Border10 ---
+Sales: 10, Ad Spend: 150.00
+Rate Used: 15%
+Calculation: (1000.00 * 15%) - 150.00 = 0.00
+Net Result: 0.00
+--- Campaign: Border20 ---
+Sales: 19, Ad Spend: 250.00
+Rate Used: 15%
+Calculation: (1900.00 * 15%) - 250.00 = 35.00
+Net Result: 35.00
+--- Campaign: Zerisale ---
+Sales: 0, Ad Spend: 1.00
+Rate Used: 10%
+Calculation: (0.00 * 10%) - 1.00 = -1.00
+Net Result: -1.00
+-----------------------------------------------------
+1
+LargeProduct 5000.00 20 15000.00
+Output:
+
+--- Campaign: LargeProduct ---
+Sales: 20, Ad Spend: 15000.00
+Rate Used: 20%
+Calculation: (100000.00 * 20%) - 15000.00 = 5000.00
+Net Result: 5000.00
