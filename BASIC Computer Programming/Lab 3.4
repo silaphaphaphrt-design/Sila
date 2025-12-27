@@ -1,0 +1,60 @@
+#include <stdio.h>
+
+struct Student {
+    char name[50];
+    int studentId;
+    float score;
+};
+
+int main() {
+    int N, i;
+    int passCount = 0;
+    int failCount = 0;
+
+    if (scanf("%d", &N) != 1) {
+        return 1;
+    }
+
+    struct Student students[N];
+
+    for (i = 0; i < N; i++) {
+        scanf("%d %f %s", &students[i].studentId, &students[i].score, students[i].name);
+    }
+
+    for (i = 0; i < N; i++) {
+        if (students[i].score >= 60.0) {
+            passCount++;
+        } else {
+            failCount++;
+        }
+    }
+
+    printf("Pass Count: %d\n", passCount);
+    printf("Fail Count: %d\n", failCount);
+
+    return 0;
+}
+------------------------------------------------------------------------
+3 101 85.0 Alice 202 59.9 Bob 303 60.0 Charlie
+Output:
+
+Pass Count: 2
+Fail Count: 1
+-----------------------------------------------------------------
+4 404 10.0 david 505 100.0 Eve 606 0.0 Frank 707 75.5 Grace
+Output:
+
+Pass Count: 2
+Fail Count: 2
+-----------------------------------------------------------------
+1 1 59.99 Solo
+Output:
+
+Pass Count: 0
+Fail Count: 1
+-----------------------------------------------------------------
+2 1 60.0 A 2 60.0 B
+Output:
+
+Pass Count: 2
+Fail Count: 0
