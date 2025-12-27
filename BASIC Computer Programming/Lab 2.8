@@ -1,0 +1,85 @@
+#include <stdio.h>
+
+int main() {
+    int N, i;
+    int studentId, score, totalClasses, absentClasses;
+    float attendancePercent;
+    int passCount = 0;
+    int failCount = 0;
+
+    if (scanf("%d", &N) != 1) {
+        return 1;
+    }
+
+    for (i = 0; i < N; i++) {
+        if (scanf("%d %d %d %d", &studentId, &score, &totalClasses, &absentClasses) != 4) {
+            break;
+        }
+
+        attendancePercent = (float)(totalClasses - absentClasses) / totalClasses * 100.0;
+
+        if (score >= 50 && attendancePercent >= 75.0) {
+            printf("Student %d: PASS\n", studentId);
+            passCount++;
+        } else {
+            printf("Student %d: FAIL - ", studentId);
+            if (score < 50 && attendancePercent < 75.0) {
+                printf("Both Score and Attendance\n");
+            } else if (score < 50) {
+                printf("Low Score\n");
+            } else {
+                printf("Low Attendance (%.2f%%)\n", attendancePercent);
+            }
+            failCount++;
+        }
+    }
+
+    printf("\n--- Summary ---\n");
+    printf("Total PASS: %d\n", passCount);
+    printf("Total FAIL: %d\n", failCount);
+
+    return 0;
+}
+-------------------------------------------------------------------------------
+3 101 90 20 2 102 45 20 1 103 80 20 6
+Output:
+
+Student 101: PASS
+Student 102: FAIL - Low Score
+Student 103: FAIL - Low Attendance (70.00%)
+
+--- Summary ---
+Total PASS: 1
+Total FAIL: 2
+---------------------------------------------------------------
+2 201 49 10 3 202 50 10 3
+Output:
+
+Student 201: FAIL - Both Score and Attendance
+Student 202: FAIL - Low Attendance (70.00%)
+
+--- Summary ---
+Total PASS: 0
+Total FAIL: 2
+---------------------------------------------------------------
+4 301 95 10 0 302 50 10 2 303 100 10 2 304 50 10 0
+Output:
+
+Student 301: PASS
+Student 302: PASS
+Student 303: PASS
+Student 304: PASS
+
+--- Summary ---
+Total PASS: 4
+Total FAIL: 0
+---------------------------------------------------------------
+2 401 10 1 9 402 10 10 0
+Output:
+
+Student 401: FAIL - Both Score and Attendance
+Student 402: FAIL - Low Score
+
+--- Summary ---
+Total PASS: 0
+Total FAIL: 2
