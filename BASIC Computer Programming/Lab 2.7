@@ -1,0 +1,65 @@
+#include <stdio.h>
+
+int main() {
+  int N, i;
+  int countFizzBuzz = 0;
+  int countFizz = 0;
+  int countBuzz = 0;
+  int countOther = 0;
+  
+  if (scanf("%d", &N) != 1){
+    return 1;
+  }
+  
+  for (i = 1; i <= N; i++){
+    if (i % 3 == 0 && i % 5 == 0){
+      countFizzBuzz++;
+    } else if (i % 3 == 0){
+      countFizz++;
+    } else if (i % 5 == 0){
+      countBuzz++;
+    } else  {
+      countOther++;
+    }
+  }
+  printf("Count FizzBuzz (by 15): %d\n", countFizzBuzz);
+  printf("Count Fizz (by 3 only): %d\n", countFizz);
+  printf("Count Buzz (by 5 only): %d\n", countBuzz);
+  printf("Count Other: %d\n", countOther);
+  return 0;
+}
+---------------------------------------------------
+15
+Output:
+
+Count FizzBuzz (by 15): 1
+Count Fizz (by 3 only): 4
+Count Buzz (by 5 only): 2
+Count Other: 8
+----------------------------------------------------------
+1
+Output:
+
+Count FizzBuzz (by 15): 0
+Count Fizz (by 3 only): 0
+Count Buzz (by 5 only): 0
+Count Other: 1
+----------------------------------------------------------
+30
+Output:
+
+Count FizzBuzz (by 15): 2
+Count Fizz (by 3 only): 8
+Count Buzz (by 5 only): 4
+Count Other: 16
+----------------------------------------------------------
+7
+Output:
+
+Count FizzBuzz (by 15): 0
+Count Fizz (by 3 only): 2
+Count Buzz (by 5 only): 1
+Count Other: 4
+
+
+
