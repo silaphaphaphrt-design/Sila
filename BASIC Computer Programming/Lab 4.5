@@ -1,0 +1,82 @@
+#include <stdio.h>
+
+int main() {
+    int SIZE = 6;
+    int data[SIZE];
+    int total_sum = 0;
+    int i;
+    
+    for (i = 0; i < SIZE; i++) {
+      printf("Enter integer number %d: ", i + 1);
+      scanf("%d", &data[i]);
+      printf("%d\n");
+      total_sum += data[i];
+    }
+    
+     printf("\n--- SUMMATION REPORT ---\n");
+     printf("Recorded Numbers: ");
+    for (i = 0; i < SIZE; i++) {
+        printf("%d ", data[i]);
+    }
+    
+    printf("\n");
+    printf("Total Sum of Numbers: %d\n", total_sum);
+
+    return 0;
+}
+------------------------------------------------------------------------
+10 20 30 40 50 60
+Output:
+
+Enter integer number 1: 10
+Enter integer number 2: 20
+Enter integer number 3: 30
+Enter integer number 4: 40
+Enter integer number 5: 50
+Enter integer number 6: 60
+
+--- SUMMATION REPORT ---
+Recorded Numbers: 10 20 30 40 50 60 
+Total Sum of Numbers: 210
+-----------------------------------------------
+1 2 3 4 5 6
+Output:
+
+Enter integer number 1: 1
+Enter integer number 2: 2
+Enter integer number 3: 3
+Enter integer number 4: 4
+Enter integer number 5: 5
+Enter integer number 6: 6
+
+--- SUMMATION REPORT ---
+Recorded Numbers: 1 2 3 4 5 6 
+Total Sum of Numbers: 21
+-----------------------------------------------
+15 0 25 10 30 5 
+Output:
+
+Enter integer number 1: 15
+Enter integer number 2: 0
+Enter integer number 3: 25
+Enter integer number 4: 10
+Enter integer number 5: 30
+Enter integer number 6: 5
+
+--- SUMMATION REPORT ---
+Recorded Numbers: 15 0 25 10 30 5 
+Total Sum of Numbers: 85
+-----------------------------------------------
+100 50 200 30 70 10 
+Output:
+
+Enter integer number 1: 100
+Enter integer number 2: 50
+Enter integer number 3: 200
+Enter integer number 4: 30
+Enter integer number 5: 70
+Enter integer number 6: 10
+
+--- SUMMATION REPORT ---
+Recorded Numbers: 100 50 200 30 70 10 
+Total Sum of Numbers: 460
