@@ -1,0 +1,114 @@
+#include <stdio.h>
+#define ROWS 2
+#define COLS 4
+
+int main() {
+    int matrix[ROWS][COLS]; 
+    int total_sum = 0;
+    int i, j;
+  
+    printf("Enter %d integers for the 2x4 matrix:\n", ROWS * COLS);
+
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLS; j++) {
+        
+            printf("Enter element for Row %d, Col %d: \n", i, j);
+            scanf("%d", &matrix[i][j]);
+            total_sum = total_sum + matrix[i][j]; 
+        }
+    }
+
+    printf("\n--- 2D ARRAY SUMMATION REPORT ---\n");
+    printf("Recorded Matrix (2x4):\n");
+    
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLS; j++) {
+            printf("%4d ", matrix[i][j]); 
+        }
+        printf("\n");
+    }
+
+    printf("\nTotal Sum of all elements: %d\n", total_sum);
+
+    return 0;
+}
+----------------------------------------------------------------------------
+1 2 3 4 5 6 7 8 
+Output:
+
+Enter 8 integers for the 2x4 matrix:
+Enter element for Row 0, Col 0: 
+Enter element for Row 0, Col 1: 
+Enter element for Row 0, Col 2: 
+Enter element for Row 0, Col 3: 
+Enter element for Row 1, Col 0: 
+Enter element for Row 1, Col 1: 
+Enter element for Row 1, Col 2: 
+Enter element for Row 1, Col 3: 
+
+--- 2D ARRAY SUMMATION REPORT ---
+Recorded Matrix (2x4):
+   1    2    3    4 
+   5    6    7    8 
+
+Total Sum of all elements: 36
+------------------------------------------------
+10 20 30 40 0 0 5 5
+Output:
+
+Enter 8 integers for the 2x4 matrix:
+Enter element for Row 0, Col 0: 
+Enter element for Row 0, Col 1: 
+Enter element for Row 0, Col 2: 
+Enter element for Row 0, Col 3: 
+Enter element for Row 1, Col 0: 
+Enter element for Row 1, Col 1: 
+Enter element for Row 1, Col 2: 
+Enter element for Row 1, Col 3: 
+
+--- 2D ARRAY SUMMATION REPORT ---
+Recorded Matrix (2x4):
+  10   20   30   40 
+   0    0    5    5 
+
+Total Sum of all elements: 110
+------------------------------------------------
+10 10 10 10 10 10 10 10
+Output:
+
+Enter 8 integers for the 2x4 matrix:
+Enter element for Row 0, Col 0: 
+Enter element for Row 0, Col 1: 
+Enter element for Row 0, Col 2: 
+Enter element for Row 0, Col 3: 
+Enter element for Row 1, Col 0: 
+Enter element for Row 1, Col 1: 
+Enter element for Row 1, Col 2: 
+Enter element for Row 1, Col 3: 
+
+--- 2D ARRAY SUMMATION REPORT ---
+Recorded Matrix (2x4):
+  10   10   10   10 
+  10   10   10   10 
+
+Total Sum of all elements: 80
+-----------------------------------------------
+100 1  2 3 10 20 30 40
+Output:
+
+Enter 8 integers for the 2x4 matrix:
+Enter element for Row 0, Col 0: 
+Enter element for Row 0, Col 1: 
+Enter element for Row 0, Col 2: 
+Enter element for Row 0, Col 3: 
+Enter element for Row 1, Col 0: 
+Enter element for Row 1, Col 1: 
+Enter element for Row 1, Col 2: 
+Enter element for Row 1, Col 3: 
+
+--- 2D ARRAY SUMMATION REPORT ---
+Recorded Matrix (2x4):
+ 100    1    2    3 
+  10   20   30   40 
+
+Total Sum of all elements: 206
