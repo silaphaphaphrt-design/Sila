@@ -1,0 +1,70 @@
+#include <stdio.h>
+
+int main() {
+  int gross_salary;
+  float tax_rate = 0.0;
+  float tax_amount = 0.0;
+  float net_salaty = 0.0;
+  
+  printf("Enter Gross Salary (THB/mounth, intrger): ");
+  scanf("%d", &gross_salary);
+  
+  if (gross_salary < 20000) {
+        tax_rate = 0.0;
+    } else if (gross_salary >= 20000 && gross_salary < 50000) {
+        tax_rate = 0.05;
+    } else {
+        tax_rate = 0.1;
+    }
+    tax_amount = gross_salary * tax_rate;
+    net_salaty = (float)gross_salary - tax_amount;
+    
+    printf("\n--- SALARY CALCULATION REPORT ---\n");
+    printf("Gross Salary: %d THB\n", gross_salary);
+    printf("Tax Rate Applied: %.0f%%\n", tax_rate * 100);
+    printf("Tax Amount Deducted: %.2f THB\n", tax_amount);
+    printf("Net Salary: %.2f THB\n", net_salaty);
+
+    return 0;
+}
+------------------------------------------------------------------------
+1800
+Output:
+
+Enter Gross Salary (THB/mounth, intrger): 
+--- SALARY CALCULATION REPORT ---
+Gross Salary: 1800 THB
+Tax Rate Applied: 0%
+Tax Amount Deducted: 0.00 THB
+Net Salary: 1800.00 THB
+--------------------------------------------
+35000
+Output:
+
+Enter Gross Salary (THB/mounth, intrger): 
+--- SALARY CALCULATION REPORT ---
+Gross Salary: 35000 THB
+Tax Rate Applied: 5%
+Tax Amount Deducted: 1750.00 THB
+Net Salary: 33250.00 THB
+--------------------------------------------
+65000
+Output:
+
+Enter Gross Salary (THB/mounth, intrger): 
+--- SALARY CALCULATION REPORT ---
+Gross Salary: 65000 THB
+Tax Rate Applied: 10%
+Tax Amount Deducted: 6500.00 THB
+Net Salary: 58500.00 THB
+--------------------------------------------
+20000
+Output:
+
+Enter Gross Salary (THB/mounth, intrger): 
+--- SALARY CALCULATION REPORT ---
+Gross Salary: 20000 THB
+Tax Rate Applied: 5%
+Tax Amount Deducted: 1000.00 THB
+Net Salary: 19000.00 THB
+
