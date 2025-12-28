@@ -1,0 +1,89 @@
+#include <stdio.h>
+#define DAYS 7
+
+int main() {
+    int daily_temp[DAYS];
+    int max_temp;
+    int i;
+
+    for (i = 0; i < DAYS; i++) {
+        scanf("%d", & daily_temp[i]);
+
+        if (i == 0 ||  daily_temp[i] > max_temp) {
+            max_temp =  daily_temp[i];
+        }
+    }
+
+    printf("--- TEMPERATURE SUMMARY ---\n");
+    printf("Record Temperature (C): ");
+
+    for (i = 0; i < DAYS; i++) {
+        printf("%d ",  daily_temp[i]);
+    }
+
+    printf("\nMaximum Temperature: %d C\n", max_temp);
+
+    if (max_temp >= 35) {
+        printf("Weather is HOT!\n");
+    } else {
+        printf("Weather is MODERATE.\n");
+    }
+
+    return 0;
+}
+------------------------------------------------------------------------------------
+25
+28
+31
+29
+30
+27
+26
+Output:
+
+--- TEMPERATURE SUMMARY ---
+Record Temperature (C): 25 28 31 29 30 27 26 
+Maximum Temperature: 31 C
+Weather is MODERATE.
+------------------------------------------------------------------
+30
+34
+36
+32
+35
+31
+33
+Output:
+
+--- TEMPERATURE SUMMARY ---
+Record Temperature (C): 30 34 36 32 35 31 33 
+Maximum Temperature: 36 C
+Weather is HOT!
+------------------------------------------------------------------
+35
+30
+29
+33
+34
+31
+30
+Output:
+
+--- TEMPERATURE SUMMARY ---
+Record Temperature (C): 35 30 29 33 34 31 30 
+Maximum Temperature: 35 C
+Weather is HOT!
+------------------------------------------------------------------
+20
+21
+22
+23
+24
+25
+33
+Output:
+
+--- TEMPERATURE SUMMARY ---
+Record Temperature (C): 20 21 22 23 24 25 33 
+Maximum Temperature: 33 C
+Weather is MODERATE.
