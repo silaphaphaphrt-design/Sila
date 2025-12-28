@@ -1,0 +1,105 @@
+#include <stdio.h>
+
+int main() {
+    int val[10];    
+    int check[10]; 
+    int n, i, j, cnt;
+
+    for (i = 0; i < 10; i++) check[i] = 0;
+
+
+    if (scanf("%d", &n) != 1) return 0;
+    if (n > 10 || n < 1) n = 10;
+
+
+    for (i = 0; i < n; i++) {
+        scanf("%d", &val[i]);
+    }
+
+    printf("\n--- FREQUENCY ANALYSIS REPORT ---\n");
+    printf("Total elements recorded (N): %d\n", n);
+    
+    printf("Recorded Numbers: ");
+    for (i = 0; i < n; i++) {
+        printf("%d%s", val[i], (i == n - 1) ? "" : " ");
+    }
+    printf("\n");
+
+    printf("--- FREQUENCY TABLE ---\n");
+    printf("Number | Frequency\n");
+    printf("-------|----------\n");
+
+    for (i = 0; i < n; i++) {
+        if (check[i] == 0) {
+            cnt = 1;
+            for (j = i + 1; j < n; j++) {
+                if (val[i] == val[j]) {
+                    cnt++;
+                    check[j] = -1; 
+                }
+            }
+            
+            printf("%-6d | %d\n", val[i], cnt);
+        }
+    }
+
+    return 0;
+}
+--------------------------------------------------------------------------------
+8 10 5 10 20 5 30 10 5 
+Output:
+
+
+--- FREQUENCY ANALYSIS REPORT ---
+Total elements recorded (N): 8
+Recorded Numbers: 10 5 10 20 5 30 10 5
+--- FREQUENCY TABLE ---
+Number | Frequency
+-------|----------
+10     | 3
+5      | 3
+20     | 1
+30     | 1
+---------------------------------------------------
+5 1 2 3 4 5
+Output:
+
+
+--- FREQUENCY ANALYSIS REPORT ---
+Total elements recorded (N): 5
+Recorded Numbers: 1 2 3 4 5
+--- FREQUENCY TABLE ---
+Number | Frequency
+-------|----------
+1      | 1
+2      | 1
+3      | 1
+4      | 1
+5      | 1
+---------------------------------------------------
+4 7 7 7 7 
+Output:
+
+
+--- FREQUENCY ANALYSIS REPORT ---
+Total elements recorded (N): 4
+Recorded Numbers: 7 7 7 7
+--- FREQUENCY TABLE ---
+Number | Frequency
+-------|----------
+7      | 4
+---------------------------------------------------
+6 15 25 15 15 25 40 
+Output:
+
+
+--- FREQUENCY ANALYSIS REPORT ---
+Total elements recorded (N): 6
+Recorded Numbers: 15 25 15 15 25 40
+--- FREQUENCY TABLE ---
+Number | Frequency
+-------|----------
+15     | 3
+25     | 2
+40     | 1
+
