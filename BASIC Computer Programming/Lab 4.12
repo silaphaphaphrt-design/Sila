@@ -1,0 +1,171 @@
+#include <stdio.h>
+
+
+void get_input(int r, int c, int *mat, char name);
+void transpose(int r, int c, int *src, int *dest);
+void multiply(int r1, int c1, int c2, int *m1, int *m2, int *res);
+void show(int r, int c, int *mat);
+
+int main() {
+    int r = 2, c = 3; 
+    int a[2][3], b[2][3], bt[3][2], res[2][2];
+
+    get_input(r, c, (int *)a, 'A');
+    get_input(r, c, (int *)b, 'B');
+
+
+    transpose(r, c, (int *)b, (int *)bt);
+    multiply(r, c, r, (int *)a, (int *)bt, (int *)res);
+
+
+    printf("\n--- MATRIX MULTIPLICATION REPORT ---\n");
+    
+    printf("\nMatrix A (%dx%d):\n", r, c);
+    show(r, c, (int *)a);
+
+    printf("\nMatrix B (%dx%d):\n", r, c);
+    show(r, c, (int *)b);
+
+    printf("\nMatrix B Transposed (BT, %dx%d):\n", c, r);
+    show(c, r, (int *)bt);
+
+    printf("\nResult Matrix C (A x BT, %dx%d):\n", r, r);
+    show(r, r, (int *)res);
+
+    return 0;
+}
+
+void get_input(int r, int c, int *mat, char name) {
+
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            
+            scanf("%d", (mat + i * c + j));
+        }
+    }
+}
+
+void transpose(int r, int c, int *src, int *dest) {
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            *(dest + j * r + i) = *(src + i * c + j);
+        }
+    }
+}
+
+void multiply(int r1, int c1, int c2, int *m1, int *m2, int *res) {
+    for (int i = 0; i < r1; i++) {
+        for (int j = 0; j < c2; j++) {
+            *(res + i * c2 + j) = 0;
+            for (int k = 0; k < c1; k++) {
+                *(res + i * c2 + j) += (*(m1 + i * c1 + k)) * (*(m2 + k * c2 + j));
+            }
+        }
+    }
+}
+
+void show(int r, int c, int *mat) {
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            printf("%d ", *(mat + i * c + j)); // ใช้ช่องว่างแทน Tab เพื่อให้เหมือนรูป
+        }
+        printf("\n");
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------
+1 2 3 4 5 6 7 8 9 10 11 12
+Output:
+
+
+--- MATRIX MULTIPLICATION REPORT ---
+
+Matrix A (2x3):
+1 2 3 
+4 5 6 
+
+Matrix B (2x3):
+7 8 9 
+10 11 12 
+
+Matrix B Transposed (BT, 3x2):
+7 10 
+8 11 
+9 12 
+
+Result Matrix C (A x BT, 2x2):
+50 68 
+122 167 
+----------------------------------------------------------------
+1 0 0 0 1 0 2 3 4 5 6 7
+Output:
+
+
+--- MATRIX MULTIPLICATION REPORT ---
+
+Matrix A (2x3):
+1 0 0 
+0 1 0 
+
+Matrix B (2x3):
+2 3 4 
+5 6 7 
+
+Matrix B Transposed (BT, 3x2):
+2 5 
+3 6 
+4 7 
+
+Result Matrix C (A x BT, 2x2):
+2 5 
+3 6 
+----------------------------------------------------------------
+1 1 1 1 1 1 1 1 1 1 1 1 
+Output:
+
+
+--- MATRIX MULTIPLICATION REPORT ---
+
+Matrix A (2x3):
+1 1 1 
+1 1 1 
+
+Matrix B (2x3):
+1 1 1 
+1 1 1 
+
+Matrix B Transposed (BT, 3x2):
+1 1 
+1 1 
+1 1 
+
+Result Matrix C (A x BT, 2x2):
+3 3 
+3 3 
+----------------------------------------------------------------
+10 5 2 1 2 3 1 1 1 2 2 2 
+Output:
+
+
+--- MATRIX MULTIPLICATION REPORT ---
+
+Matrix A (2x3):
+10 5 2 
+1 2 3 
+
+Matrix B (2x3):
+1 1 1 
+2 2 2 
+
+Matrix B Transposed (BT, 3x2):
+1 2 
+1 2 
+1 2 
+
+Result Matrix C (A x BT, 2x2):
+17 34 
+6 12 
+
+
+
+
+
