@@ -1,0 +1,73 @@
+#include <stdio.h>
+#define SIZE 5
+
+
+int calculate_sum(int array[], int size);
+
+int main() {
+    int numbers[SIZE];
+    int total_sum;
+    float average;
+    int i;
+
+    for (i = 0; i < SIZE; i++) {
+      scanf("%d", &numbers[i]);
+    }
+
+    total_sum = calculate_sum(numbers, SIZE);
+    average = (float)total_sum / SIZE;
+
+    printf("\n--- ARRAY AVERAGE REPORT ---\n");
+    printf("Recorded Numbers: ");
+    for (i = 0; i < SIZE; i++) {
+        printf("%d ", numbers[i]);
+    }
+    printf("\n");
+    printf("Total Sum: %d\n", total_sum);
+    printf("Average: %.2f\n", average);
+
+    return 0;
+}
+    int calculate_sum(int array[], int size) { 
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += array[i]; 
+    }
+    return sum; 
+}
+----------------------------------------------------------------
+10 20 30 40 50
+Output:
+
+
+--- ARRAY AVERAGE REPORT ---
+Recorded Numbers: 10 20 30 40 50 
+Total Sum: 150
+Average: 30.00
+--------------------------------------
+1 2 3 4 5
+Output:
+
+
+--- ARRAY AVERAGE REPORT ---
+Recorded Numbers: 1 2 3 4 5 
+Total Sum: 15
+Average: 3.00
+--------------------------------------
+1 1 1 1 6
+Output:
+
+
+--- ARRAY AVERAGE REPORT ---
+Recorded Numbers: 1 1 1 1 6 
+Total Sum: 10
+Average: 2.00
+--------------------------------------
+15 25 35 45 55
+Output:
+
+
+--- ARRAY AVERAGE REPORT ---
+Recorded Numbers: 15 25 35 45 55 
+Total Sum: 175
+Average: 35.00
