@@ -1,0 +1,110 @@
+#include <stdio.h>
+
+int calcChange(int cost, int paid);
+int countNote(int *remain, int value);
+
+int main()
+{
+    int cost, paid, change, remain;
+    int n1000, n500, n100, n50, n20, n10, n5, n2, n1;
+
+    scanf("%d", &cost);
+    scanf("%d", &paid);
+
+    change = calcChange(cost, paid);
+    if(change == -1)
+    {
+        printf("\nERROR: Amount Paid is less than Total Cost.\n");
+        return 1;
+    }
+
+    remain = change;
+
+    n1000 = countNote(&remain, 1000);
+    n500  = countNote(&remain, 500);
+    n100  = countNote(&remain, 100);
+    n50   = countNote(&remain, 50);
+    n20   = countNote(&remain, 20);
+    n10   = countNote(&remain, 10);
+    n5    = countNote(&remain, 5);
+    n2    = countNote(&remain, 2);
+    n1    = countNote(&remain, 1);
+
+    printf("\n--- CHANGE CALCULATION REPORT ---\n");
+    printf("Total Cost: %d\n", cost);
+    printf("Amount Paid: %d\n", paid);
+    printf("Change Amount: %d\n", change);
+
+    printf("\nDenomination Breakdown:\n");
+
+    if(n1000) printf("1000 Baht: %d\n", n1000);
+    if(n500)  printf("500 Baht: %d\n", n500);
+    if(n100)  printf("100 Baht: %d\n", n100);
+    if(n50)   printf("50 Baht: %d\n", n50);
+    if(n20)   printf("20 Baht: %d\n", n20);
+    if(n10)   printf("10 Baht: %d\n", n10);
+    if(n5)    printf("5 Baht: %d\n", n5);
+    if(n2)    printf("2 Baht: %d\n", n2);
+    if(n1)    printf("1 Baht: %d\n", n1);
+
+    return 0;
+}
+
+int calcChange(int cost, int paid)
+{
+    if(paid >= cost)
+        return paid - cost;
+    return -1;
+}
+
+int countNote(int *remain, int value)
+{
+    int cnt = *remain / value;
+    *remain %= value;
+    return cnt;
+}
+--------------------------------------------------------------------------------
+1357 2000 
+Output:
+
+
+--- CHANGE CALCULATION REPORT ---
+Total Cost: 1357
+Amount Paid: 2000
+Change Amount: 643
+
+Denomination Breakdown:
+500 Baht: 1
+100 Baht: 1
+20 Baht: 2
+2 Baht: 1
+1 Baht: 1
+-----------------------------------------------
+555 555 
+Output:
+
+
+--- CHANGE CALCULATION REPORT ---
+Total Cost: 555
+Amount Paid: 555
+Change Amount: 0
+
+Denomination Breakdown:
+-----------------------------------------------
+000 5000 
+Output:
+
+
+--- CHANGE CALCULATION REPORT ---
+Total Cost: 1000
+Amount Paid: 5000
+Change Amount: 4000
+
+Denomination Breakdown:
+1000 Baht: 4
+-----------------------------------------------
+800 700
+Output:
+
+
+ERROR: Amount Paid is less than Total Cost.
