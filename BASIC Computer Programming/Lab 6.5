@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX 100
+
+void countVowel(const char *s, int *cnt);
+
+int main()
+{
+    char text[MAX];
+    int vowel = 0;
+
+    if(fgets(text, MAX, stdin) == NULL)
+        return 1;
+
+    text[strcspn(text, "\n")] = '\0';
+
+    countVowel(text, &vowel);
+
+    printf("\n--- STRING ANALYSIS REPORT ---\n");
+    printf("Input String: \"%s\"\n", text);
+    printf("Total Vowel Count: %d\n", vowel);
+
+    return 0;
+}
+
+void countVowel(const char *s, int *cnt)
+{
+    while(*s)
+    {
+        if(*s=='a'||*s=='A'||*s=='e'||*s=='E'||
+           *s=='i'||*s=='I'||*s=='o'||*s=='O'||
+           *s=='u'||*s=='U')
+            (*cnt)++;
+        s++;
+    }
+}
+--------------------------------------------------------------------
+programming is fun
+Output:
+
+
+--- STRING ANALYSIS REPORT ---
+Input String: "programming is fun"
+Total Vowel Count: 5
+------------------------------------------------
+Hello World!
+Output:
+
+
+--- STRING ANALYSIS REPORT ---
+Input String: "Hello World!"
+Total Vowel Count: 3
+------------------------------------------------
+rtythm
+Output:
+
+
+--- STRING ANALYSIS REPORT ---
+Input String: "rtythm"
+Total Vowel Count: 0
+------------------------------------------------
+AEIOUaeiou
+Output:
+
+
+--- STRING ANALYSIS REPORT ---
+Input String: "AEIOUaeiou"
+Total Vowel Count: 10
+
