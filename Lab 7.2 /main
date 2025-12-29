@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main() {
+    FILE *fp;
+    char filename[] = "output_data.txt";
+    int year = 2025;
+
+    fp = fopen(filename, "w");
+    if (fp == NULL) {
+        printf("ERROR: Cannot open file %s\n", filename);
+        return 1;
+    }
+
+    fprintf(fp, "Hello, C File Handling is easy.\n%d", year);
+
+    printf("--- FILE WRITING PROCESS ---\n");
+    printf("Writing data to %s...\n", filename);
+    printf("File writing complete.\n");
+
+    printf("\n--- FILE OPERATION REPORT ---\n");
+    printf("Action: File created and data written successfully.\n");
+    printf("Filename: %s\n", filename);
+
+    fclose(fp);
+    return 0;
+}
+-----------------------------------------------------------------------------
+--- FILE READING PROCESS ---
+Reading data from input_data.csv...
+File reading complete.
+
+--- DATA ANALYSIS REPORT ---
+Data read: 10, 20, 30, 40, 50
+Total Sum: 150
