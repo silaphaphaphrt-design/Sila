@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+void swapVal(int *x, int *y);
+
+int main()
+{
+    int a, b;
+
+    scanf("%d", &a);
+    scanf("%d", &b);
+
+    printf("\n--- SWAPPING REPORT ---\n");
+    printf("Before Swap - Num1: %d, Num2: %d\n", a, b);
+
+    swapVal(&a, &b);
+
+    printf("After Swap - Num1: %d, Num2: %d\n", a, b);
+
+    return 0;
+}
+
+void swapVal(int *x, int *y)
+{
+    int tmp;
+    tmp = *x;
+    *x = *y;
+    *y = tmp;
+}
+--------------------------------------------------------
+10 5 
+Output:
+
+
+--- SWAPPING REPORT ---
+Before Swap - Num1: 10, Num2: 5
+After Swap - Num1: 5, Num2: 10
+----------------------------------------
+100 500 
+Output:
+
+
+--- SWAPPING REPORT ---
+Before Swap - Num1: 100, Num2: 500
+After Swap - Num1: 500, Num2: 100
