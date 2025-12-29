@@ -1,0 +1,125 @@
+#include <stdio.h>
+#define MONTHS 3
+
+void analyze_profit(int *rev, int *exp, int *status, int *net);
+void input_data(int arr[], int size, const char *label);
+void print_total(int arr[], int size, const char *label);
+
+int main()
+{
+    int revenue[MONTHS];
+    int expense[MONTHS];
+    int net_profit = 0;
+    int status = 0;
+
+    input_data(revenue, MONTHS, "REVENUE");
+    input_data(expense, MONTHS, "EXPENSE");
+
+    analyze_profit(revenue, expense, &status, &net_profit);
+
+    printf("\n--- 3 MONTH FINANCIAL ANALYSIS REPORT ---\n");
+    print_total(revenue, MONTHS, "REVENUE");
+    print_total(expense, MONTHS, "EXPENSE");
+
+    printf("\nNET PROFIT: %d\n", net_profit);
+    printf("BUSINESS STATUS: ");
+    if (status == 1)
+        printf("PROJECT IS PROFITABLE");
+    else
+        printf("PROJECT IS UNPROFITABLE");
+
+    return 0;
+}
+
+void input_data(int arr[], int size, const char *label)
+{
+    printf("\nEnter %d months of %s values:\n", size, label);
+    for (int i = 0; i < size; i++) {
+        printf("Month %d %s: ", i + 1, label);
+        scanf("%d", &arr[i]);
+        printf("%d\n", arr[i]);
+    }
+}
+
+void print_total(int arr[], int size, const char *label)
+{
+    int sum = 0;
+    for (int i = 0; i < size; i++)
+        sum += arr[i];
+
+    printf("TOTAL %s: %d\n", label, sum);
+}
+
+void analyze_profit(int *rev, int *exp, int *status, int *net)
+{
+    for (int i = 0; i < MONTHS; i++)
+        *net += rev[i] - exp[i];
+
+    if (*net >= 0)
+        *status = 1;
+}
+------------------------------------------------------------------------------
+1000 1000 1000 500 500 500 
+Output:
+
+
+Enter 3 months of REVENUE values:
+Month 1 REVENUE: 1000
+Month 2 REVENUE: 1000
+Month 3 REVENUE: 1000
+
+Enter 3 months of EXPENSE values:
+Month 1 EXPENSE: 500
+Month 2 EXPENSE: 500
+Month 3 EXPENSE: 500
+
+--- 3 MONTH FINANCIAL ANALYSIS REPORT ---
+TOTAL REVENUE: 3000
+TOTAL EXPENSE: 1500
+
+NET PROFIT: 1500
+BUSINESS STATUS: PROJECT IS PROFITABLE
+-------------------------------------------------------
+100 100 100 200 200 200
+Output:
+
+
+Enter 3 months of REVENUE values:
+Month 1 REVENUE: 100
+Month 2 REVENUE: 100
+Month 3 REVENUE: 100
+
+Enter 3 months of EXPENSE values:
+Month 1 EXPENSE: 200
+Month 2 EXPENSE: 200
+Month 3 EXPENSE: 200
+
+--- 3 MONTH FINANCIAL ANALYSIS REPORT ---
+TOTAL REVENUE: 300
+TOTAL EXPENSE: 600
+
+NET PROFIT: -300
+BUSINESS STATUS: PROJECT IS UNPROFITABLE
+-------------------------------------------------------
+500 5000 500 500 500 500
+Output:
+
+
+Enter 3 months of REVENUE values:
+Month 1 REVENUE: 500
+Month 2 REVENUE: 5000
+Month 3 REVENUE: 500
+
+Enter 3 months of EXPENSE values:
+Month 1 EXPENSE: 500
+Month 2 EXPENSE: 500
+Month 3 EXPENSE: 500
+
+--- 3 MONTH FINANCIAL ANALYSIS REPORT ---
+TOTAL REVENUE: 6000
+TOTAL EXPENSE: 1500
+
+NET PROFIT: 4500
+BUSINESS STATUS: PROJECT IS PROFITABLE
+
+
