@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+void addValue(int *num);
+
+int main()
+{
+    int x;
+
+    scanf("%d", &x);
+
+    printf("\n--- POINTER MODIFICATION REPORT ---\n");
+    printf("1. Value BEFORE function call: %d\n", x);
+
+    addValue(&x);
+
+    printf("2. Value AFTER function call: %d\n", x);
+
+    return 0;
+}
+
+void addValue(int *num)
+{
+    *num += 10;
+}
+-----------------------------------------------------------------
+50
+Output:
+
+
+--- POINTER MODIFICATION REPORT ---
+1. Value BEFORE function call: 50
+2. Value AFTER function call: 60
+--------------------------------------------
+0
+Output:
+
+
+--- POINTER MODIFICATION REPORT ---
+1. Value BEFORE function call: 0
+2. Value AFTER function call: 10
+
+--------------------------------------------
+1000
+Output:
+
+
+--- POINTER MODIFICATION REPORT ---
+1. Value BEFORE function call: 1000
+2. Value AFTER function call: 1010
+--------------------------------------------
+7
+Output:
+
+
+--- POINTER MODIFICATION REPORT ---
+1. Value BEFORE function call: 7
+2. Value AFTER function call: 17
