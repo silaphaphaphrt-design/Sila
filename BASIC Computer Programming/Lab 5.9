@@ -1,0 +1,121 @@
+#include <stdio.h>
+
+struct Product {
+    int item_id;
+    float cost_price;
+    float sell_price;
+    int stock_quantity;
+};
+
+float calculate_total_profit(float cost, float sell, int qty);
+float calculate_profit_percentage(float cost, float sell);
+
+int main() {
+    struct Product item;
+    float total_profit;
+    float profit_percent;
+
+    printf("Enter Item ID: \n");
+    scanf("%*c%d", &item.item_id); 
+
+    printf("Enter Cost Price per unit: \n");
+    scanf("%f", &item.cost_price);
+
+    printf("Enter Sell Price per unit: \n");
+    scanf("%f", &item.sell_price);
+
+    printf("Enter Stock Quantity: \n");
+    scanf("%d", &item.stock_quantity);
+
+
+    total_profit = calculate_total_profit(item.cost_price, item.sell_price, item.stock_quantity);
+    profit_percent = calculate_profit_percentage(item.cost_price, item.sell_price);
+
+
+    printf("\n--- INVENTORY PROFIT REPORT ---\n");
+    printf("Item ID: %d\n", item.item_id);
+    printf("Cost Price: %.2f, Sell Price: %.2f, Stock: %d\n", item.cost_price, item.sell_price, item.stock_quantity);
+    printf("Total Profit: %.2f\n", total_profit);
+    printf("Profit Percentage: %.2f%%\n", profit_percent);
+
+
+    if (total_profit > 0) {
+        printf("Status: Profit!\n");
+    } else if (total_profit < 0) {
+        printf("Status: Loss!\n");
+    } else {
+        printf("Status: Break Even.\n");
+    }
+
+    return 0;
+}
+
+float calculate_total_profit(float cost, float sell, int qty) {
+    return (sell - cost) * qty;
+}
+
+
+float calculate_profit_percentage(float cost, float sell) {
+    if (cost == 0) return 0; 
+    return ((sell - cost) / cost) * 100;
+}
+-------------------------------------------------------------------------------
+P001 100.00 150.00 50 
+Output:
+
+Enter Item ID: 
+Enter Cost Price per unit: 
+Enter Sell Price per unit: 
+Enter Stock Quantity: 
+
+--- INVENTORY PROFIT REPORT ---
+Item ID: 1
+Cost Price: 100.00, Sell Price: 150.00, Stock: 50
+Total Profit: 2500.00
+Profit Percentage: 50.00%
+Status: Profit!
+--------------------------------------------------
+P002 200.00 180.00 10 
+Output:
+
+Enter Item ID: 
+Enter Cost Price per unit: 
+Enter Sell Price per unit: 
+Enter Stock Quantity: 
+
+--- INVENTORY PROFIT REPORT ---
+Item ID: 2
+Cost Price: 200.00, Sell Price: 180.00, Stock: 10
+Total Profit: -200.00
+Profit Percentage: -10.00%
+Status: Loss!
+--------------------------------------------------
+P003 50.00 50.00 100 
+Output:
+
+Enter Item ID: 
+Enter Cost Price per unit: 
+Enter Sell Price per unit: 
+Enter Stock Quantity: 
+
+--- INVENTORY PROFIT REPORT ---
+Item ID: 3
+Cost Price: 50.00, Sell Price: 50.00, Stock: 100
+Total Profit: 0.00
+Profit Percentage: 0.00%
+Status: Break Even.
+--------------------------------------------------
+P004 1000.00 1250.00 5 
+Output:
+
+Enter Item ID: 
+Enter Cost Price per unit: 
+Enter Sell Price per unit: 
+Enter Stock Quantity: 
+
+--- INVENTORY PROFIT REPORT ---
+Item ID: 4
+Cost Price: 1000.00, Sell Price: 1250.00, Stock: 5
+Total Profit: 1250.00
+Profit Percentage: 25.00%
+Status: Profit!
