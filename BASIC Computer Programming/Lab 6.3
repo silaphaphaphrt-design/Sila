@@ -1,0 +1,69 @@
+#include <stdio.h>
+#define N 3
+
+int main()
+{
+    int arr[N];
+    int *p;
+    int i;
+
+    for(i = 0; i < N; i++)
+        scanf("%d", &arr[i]);
+
+    p = arr;
+
+    printf("\n--- ARRAY AND POINTER REPORT ---\n");
+    printf("Idx | Direct | Pointer | Address\n");
+    printf("--------------------------------\n");
+
+    for(i = 0; i < N; i++)
+        printf("%3d | %6d | %7d | %p\n",
+               i, arr[i], p[i], &p[i]);
+
+    return 0;
+}
+-----------------------------------------------------------------------
+11 22 33 
+Output:
+
+
+--- ARRAY AND POINTER REPORT ---
+Idx | Direct | Pointer | Address
+--------------------------------
+  0 |     11 |      11 | 0x7fff359c30dc
+  1 |     22 |      22 | 0x7fff359c30e0
+  2 |     33 |      33 | 0x7fff359c30e4
+  ---------------------------------------------------------
+  100 200 300 
+  Output:
+
+
+--- ARRAY AND POINTER REPORT ---
+Idx | Direct | Pointer | Address
+--------------------------------
+  0 |    100 |     100 | 0x7ffe959fa67c
+  1 |    200 |     200 | 0x7ffe959fa680
+  2 |    300 |     300 | 0x7ffe959fa684
+  ---------------------------------------------------------
+  0 1 0 
+  Output:
+
+
+--- ARRAY AND POINTER REPORT ---
+Idx | Direct | Pointer | Address
+--------------------------------
+  0 |      0 |       0 | 0x7ffca924447c
+  1 |      1 |       1 | 0x7ffca9244480
+  2 |      0 |       0 | 0x7ffca9244484
+  ---------------------------------------------------------
+  -5 10 -15 
+  Output:
+
+
+--- ARRAY AND POINTER REPORT ---
+Idx | Direct | Pointer | Address
+--------------------------------
+  0 |     -5 |      -5 | 0x7ffd6e3e4e4c
+  1 |     10 |      10 | 0x7ffd6e3e4e50
+  2 |    -15 |     -15 | 0x7ffd6e3e4e54
+  
