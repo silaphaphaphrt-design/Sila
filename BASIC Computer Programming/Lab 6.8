@@ -1,0 +1,121 @@
+#include <stdio.h>
+#define SIZE 5
+
+void updateValue(int *arr, int *target, int *replace, int *flag);
+void showArray(int arr[], int size);
+
+int main()
+{
+    int data[SIZE];
+    int target, replace;
+    int status = 0;
+
+    printf("Enter %d integer elements:\n", SIZE);
+    for(int i = 0; i < SIZE; i++){
+        printf("Element %d: \n", i + 1);
+        scanf("%d", &data[i]);
+    }
+
+    printf("\nSearch Value: ");
+    scanf("%d", &target);
+    printf("New Value: ");
+    scanf("%d", &replace);
+
+    printf("\n--- ARRAY UPDATE REPORT ---\n");
+    printf("Array BEFORE Update: ");
+    showArray(data, SIZE);
+
+    updateValue(data, &target, &replace, &status);
+
+    printf("Array AFTER Update: ");
+    showArray(data, SIZE);
+
+    printf("Status: ");
+    if(status)
+        printf("Update SUCCESSFUL.");
+    else
+        printf("Update FAILED (Value not found).");
+
+    return 0;
+}
+
+void showArray(int arr[], int size)
+{
+    for(int i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+void updateValue(int *arr, int *target, int *replace, int *flag)
+{
+    for(int i = 0; i < SIZE; i++){
+        if(arr[i] == *target){
+            arr[i] = *replace;
+            *flag = 1;
+        }
+    }
+}
+--------------------------------------------------------------------
+10 20 30 40 50 30 99 
+Output:
+
+Enter 5 integer elements:
+Element 1: 
+Element 2: 
+Element 3: 
+Element 4: 
+Element 5: 
+
+Search Value: New Value: 
+--- ARRAY UPDATE REPORT ---
+Array BEFORE Update: 10 20 30 40 50 
+Array AFTER Update: 10 20 99 40 50 
+Status: Update SUCCESSFUL.
+------------------------------------------------
+5 6 7 8 9 10 0 
+Output:
+
+Enter 5 integer elements:
+Element 1: 
+Element 2: 
+Element 3: 
+Element 4: 
+Element 5: 
+
+Search Value: New Value: 
+--- ARRAY UPDATE REPORT ---
+Array BEFORE Update: 5 6 7 8 9 
+Array AFTER Update: 5 6 7 8 9 
+Status: Update FAILED (Value not found).
+------------------------------------------------
+10 20 10 30 40 10 5
+Output:
+
+Enter 5 integer elements:
+Element 1: 
+Element 2: 
+Element 3: 
+Element 4: 
+Element 5: 
+
+Search Value: New Value: 
+--- ARRAY UPDATE REPORT ---
+Array BEFORE Update: 10 20 10 30 40 
+Array AFTER Update: 5 20 5 30 40 
+Status: Update SUCCESSFUL.
+------------------------------------------------
+1 2 3 4 5 5 50 
+Output:
+
+Enter 5 integer elements:
+Element 1: 
+Element 2: 
+Element 3: 
+Element 4: 
+Element 5: 
+
+Search Value: New Value: 
+--- ARRAY UPDATE REPORT ---
+Array BEFORE Update: 1 2 3 4 5 
+Array AFTER Update: 1 2 3 4 50 
+Status: Update SUCCESSFUL.
