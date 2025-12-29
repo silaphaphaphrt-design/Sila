@@ -1,0 +1,188 @@
+#include <stdio.h>
+
+struct Student {
+    int id;
+    int score;
+    char grade;
+};
+
+void calc_grade(struct Student *st);
+
+void show_menu() {
+    printf("\n--- STUDENT RECORD MENU ---\n");
+    printf("1. Input / Update Data\n");
+    printf("2. View Report\n");
+    printf("3. Exit\n");
+    printf("Enter choice: ");
+}
+
+int main() {
+    struct Student st = {0, 0, 'U'};
+    int choice = 0;
+
+    while (choice != 3) {
+        show_menu();
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter Student ID: ");
+                scanf("%d", &st.id);
+                printf("Enter Score (0-100): ");
+                scanf("%d", &st.score);
+
+                calc_grade(&st);
+                printf("Data updated.\n");
+                break;
+
+            case 2:
+                if (st.id == 0) {
+                    printf("No student data available.\n");
+                } else {
+                    printf("\n--- STUDENT REPORT ---\n");
+                    printf("ID: %d\n", st.id);
+                    printf("Score: %d\n", st.score);
+                    printf("Grade: %c\n", st.grade);
+                }
+                break;
+
+            case 3:
+                printf("Exiting program. Goodbye!\n");
+                break;
+
+            default:
+                printf("Invalid choice.\n");
+        }
+    }
+    return 0;
+}
+
+void calc_grade(struct Student *st) {
+    if (st->score >= 80) st->grade = 'A';
+    else if (st->score >= 70) st->grade = 'B';
+    else if (st->score >= 60) st->grade = 'C';
+    else if (st->score >= 50) st->grade = 'D';
+    else st->grade = 'F';
+}
+-------------------------------------------------------------------------------------------------
+1 1001 95 2 1 1001 72 2 3 
+Output:
+
+
+--- STUDENT RECORD MENU ---
+1. Input / Update Data
+2. View Report
+3. Exit
+Enter choice: Enter Student ID: Enter Score (0-100): Data updated.
+
+--- STUDENT RECORD MENU ---
+1. Input / Update Data
+2. View Report
+3. Exit
+Enter choice: 
+--- STUDENT REPORT ---
+ID: 1001
+Score: 95
+Grade: A
+
+--- STUDENT RECORD MENU ---
+1. Input / Update Data
+2. View Report
+3. Exit
+Enter choice: Enter Student ID: Enter Score (0-100): Data updated.
+
+--- STUDENT RECORD MENU ---
+1. Input / Update Data
+2. View Report
+3. Exit
+Enter choice: 
+--- STUDENT REPORT ---
+ID: 1001
+Score: 72
+Grade: B
+
+--- STUDENT RECORD MENU ---
+1. Input / Update Data
+2. View Report
+3. Exit
+Enter choice: Exiting program. Goodbye!
+--------------------------------------------------------------------------
+1 2002 50 2 1 2002 49 2 3 
+Output:
+
+
+--- STUDENT RECORD MENU ---
+1. Input / Update Data
+2. View Report
+3. Exit
+Enter choice: Enter Student ID: Enter Score (0-100): Data updated.
+
+--- STUDENT RECORD MENU ---
+1. Input / Update Data
+2. View Report
+3. Exit
+Enter choice: 
+--- STUDENT REPORT ---
+ID: 2002
+Score: 50
+Grade: D
+
+--- STUDENT RECORD MENU ---
+1. Input / Update Data
+2. View Report
+3. Exit
+Enter choice: Enter Student ID: Enter Score (0-100): Data updated.
+
+--- STUDENT RECORD MENU ---
+1. Input / Update Data
+2. View Report
+3. Exit
+Enter choice: 
+--- STUDENT REPORT ---
+ID: 2002
+Score: 49
+Grade: F
+
+--- STUDENT RECORD MENU ---
+1. Input / Update Data
+2. View Report
+3. Exit
+Enter choice: Exiting program. Goodbye!
+--------------------------------------------------------------------------
+4 2 1 3003 65 2 3 
+Output:
+
+
+--- STUDENT RECORD MENU ---
+1. Input / Update Data
+2. View Report
+3. Exit
+Enter choice: Invalid choice.
+
+--- STUDENT RECORD MENU ---
+1. Input / Update Data
+2. View Report
+3. Exit
+Enter choice: No student data available.
+
+--- STUDENT RECORD MENU ---
+1. Input / Update Data
+2. View Report
+3. Exit
+Enter choice: Enter Student ID: Enter Score (0-100): Data updated.
+
+--- STUDENT RECORD MENU ---
+1. Input / Update Data
+2. View Report
+3. Exit
+Enter choice: 
+--- STUDENT REPORT ---
+ID: 3003
+Score: 65
+Grade: C
+
+--- STUDENT RECORD MENU ---
+1. Input / Update Data
+2. View Report
+3. Exit
+Enter choice: Exiting program. Goodbye!
