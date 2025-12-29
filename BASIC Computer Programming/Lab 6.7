@@ -1,0 +1,70 @@
+#include <stdio.h>
+
+void calcOdds(int *outs, float *odds, int *flag);
+
+int main()
+{
+    int outs = 10;
+    float chance;
+    int status;
+
+    calcOdds(&outs, &chance, &status);
+
+    printf("\n--- POKER PROBABILITY REPORT (2 Cards Remaining) ---\n");
+    printf("Calculated Outs: %d\n", outs);
+    printf("Win Probability (Odds x 4): %.2f%%\n", chance);
+
+    printf("Assessment: ");
+    if(status)
+        printf("HIGH Win Probalility");
+    else
+        printf("LOW Win Probalility");
+
+    return 0;
+}
+
+void calcOdds(int *outs, float *odds, int *flag)
+{
+    *odds = (*outs) * 4;
+
+    if(*odds >= 30.0)
+        *flag = 1;
+    else
+        *flag = 0;
+}
+----------------------------------------------------------------------------
+6
+Output:
+
+
+--- POKER PROBABILITY REPORT (2 Cards Remaining) ---
+Calculated Outs: 10
+Win Probability (Odds x 4): 40.00%
+Assessment: HIGH Win Probalilyty
+----------------------------------------------------------------------------
+9
+Output:
+
+
+--- POKER PROBABILITY REPORT (2 Cards Remaining) ---
+Calculated Outs: 10
+Win Probability (Odds x 4): 40.00%
+Assessment: HIGH Win Probalility
+----------------------------------------------------------------------------
+7
+Output:
+
+
+--- POKER PROBABILITY REPORT (2 Cards Remaining) ---
+Calculated Outs: 10
+Win Probability (Odds x 4): 40.00%
+Assessment: HIGH Win Probalility
+----------------------------------------------------------------------------
+-10
+Output:
+
+
+--- POKER PROBABILITY REPORT (2 Cards Remaining) ---
+Calculated Outs: 10
+Win Probability (Odds x 4): 40.00%
+Assessment: HIGH Win Probalility
