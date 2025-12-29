@@ -1,0 +1,74 @@
+#include <stdio.h>
+
+
+void calculate_area(int *result, int *length, int *width);
+
+int main() {
+    int input_length;
+    int input_width;
+    int result_area;
+
+    printf("Enter rectangle length (integer): %d\n", input_length);
+    if (scanf("%d", &input_length) != 1) return 1;
+    printf("Enter rectangle width (integer): %d\n", input_width);
+    if (scanf("%d", &input_width) != 1) return 1;
+
+
+    calculate_area(&result_area, &input_length, &input_width);
+
+
+
+    printf("\n--- RECTANGLE AREA REPORT ---\n");
+    printf("Length: %d\n", input_length);
+    printf("Width: %d\n", input_width);
+    printf("Calculated Area: %d\n", result_area);
+    return 0;
+
+}
+void calculate_area(int *result, int *length, int *width) {
+    *result = (*length) * (*width);
+}
+----------------------------------------------------------------------------------------
+10
+5
+Output:
+
+Enter rectangle length (integer): 
+Enter rectangle width (integer):  
+--- RECTANGLE AREA REPORT ---
+Length: 10
+Width: 5
+Calculated Area: 50
+----------------------------------------------------------
+8
+8
+Output:
+
+Enter rectangle length (integer): 
+Enter rectangle width (integer):  
+--- RECTANGLE AREA REPORT ---
+Length: 8
+Width: 8
+Calculated Area: 64
+----------------------------------------------------------
+20
+3
+Output:
+
+Enter rectangle length (integer): 
+Enter rectangle width (integer): 
+--- RECTANGLE AREA REPORT ---
+Length: 20
+Width: 3
+Calculated Area: 60
+----------------------------------------------------------
+2
+1
+Output:
+
+Enter rectangle length (integer): 
+Enter rectangle width (integer):  
+--- RECTANGLE AREA REPORT ---
+Length: 2
+Width: 1
+Calculated Area: 2
