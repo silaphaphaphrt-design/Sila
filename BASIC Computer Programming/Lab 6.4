@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+void calcSumProd(int a, int b, int *sum, int *prod);
+
+int main()
+{
+    int a, b;
+    int sum, prod;
+
+    scanf("%d", &a);
+    scanf("%d", &b);
+
+    calcSumProd(a, b, &sum, &prod);
+
+    printf("\n--- CALCULATION REPORT ---\n");
+    printf("Input Values: A = %d, B = %d\n", a, b);
+    printf("Result Sum(A+B): %d\n", sum);
+    printf("Result Product(A*B): %d\n", prod);
+
+    return 0;
+}
+
+void calcSumProd(int a, int b, int *sum, int *prod)
+{
+    *sum = a + b;
+    *prod = a * b;
+}
+-----------------------------------------------------------------------------------------
+10 5 
+Output:
+
+
+--- CALCULATION REPORT ---
+Input Values: A = 10, B = 5
+Result Sum(A+B): 15
+Result Product(A*B): 50
+-------------------------------------------
+100 20 
+Output:
+
+
+--- CALCULATION REPORT ---
+Input Values: A = 100, B = 20
+Result Sum(A+B): 120
+Result Product(A*B): 2000
+-------------------------------------------
+0 42 
+Output:
+
+
+--- CALCULATION REPORT ---
+Input Values: A = 0, B = 42
+Result Sum(A+B): 42
+Result Product(A*B): 0
+-------------------------------------------
+-5 10 
+Output:
+
+
+--- CALCULATION REPORT ---
+Input Values: A = -5, B = 10
+Result Sum(A+B): 5
+Result Product(A*B): -50
