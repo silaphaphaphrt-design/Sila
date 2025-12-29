@@ -1,0 +1,71 @@
+#include <stdio.h>
+
+#define SIZE 5
+
+void calcBalance(int *arr, int *bal, int *stat);
+
+int main()
+{
+    int trans[SIZE];
+    int balance, status;
+    int i;
+
+    for(i = 0; i < SIZE; i++)
+        scanf("%d", &trans[i]);
+
+    calcBalance(trans, &balance, &status);
+
+    printf("\n--- PERSONAL FINANCE REPORT ---\n");
+    printf("Transactions Recorded: ");
+    for(i = 0; i < SIZE; i++)
+        printf("%d ", trans[i]);
+
+    printf("\nNet Balance: %d\n", balance);
+    printf("Status: %s", status ? "PROFIT" : "LOSS");
+
+    return 0;
+}
+
+void calcBalance(int *arr, int *bal, int *stat)
+{
+    for(int i = 0; i < SIZE; i++)
+        *bal += arr[i];
+
+    *stat = (*bal >= 0);
+}
+-------------------------------------------------------------------
+1000 -200 500 -100 -50 
+Output:
+
+
+--- PERSONAL FINANCE REPORT ---
+Transactions Recorded: 1000 -200 500 -100 -50 
+Net Balance: 1150
+Status: PROFIT
+--------------------------------------------------
+100 -500 -100 50 -20 
+Output:
+
+
+--- PERSONAL FINANCE REPORT ---
+Transactions Recorded: 100 -500 -100 50 -20 
+Net Balance: -470
+Status: LOSS
+--------------------------------------------------
+500 500 -500 -500 0 
+Output:
+
+
+--- PERSONAL FINANCE REPORT ---
+Transactions Recorded: 500 500 -500 -500 0 
+Net Balance: 0
+Status: PROFIT
+--------------------------------------------------
+100 -200 -50 -50 -100 
+Output:
+
+
+--- PERSONAL FINANCE REPORT ---
+Transactions Recorded: -100 -200 -50 -50 -100 
+Net Balance: -500
+Status: LOSS
