@@ -1,0 +1,129 @@
+#include <stdio.h>
+
+#define N 4
+
+struct Employee {
+    int id;
+    int salary;
+};
+
+void findMinMax(struct Employee emp[], int n, int *mx, int *mn);
+
+int main()
+{
+    struct Employee data[N];
+    int maxS, minS;
+    int i;
+
+    for(i = 0; i < N; i++)
+    {
+        scanf("%d", &data[i].id);
+        scanf("%d", &data[i].salary);
+    }
+
+    findMinMax(data, N, &maxS, &minS);
+
+    printf("\n--- EMPLOYEE SALARY SUMMARY ---\n");
+    printf("ID     | Salary\n");
+    printf("-------|---------\n");
+
+    for(i = 0; i < N; i++)
+        printf("%-6d | %d\n", data[i].id, data[i].salary);
+
+    printf("\nMaximum Salary Found: %d\n", maxS);
+    printf("Minimum Salary Found: %d\n", minS);
+
+    return 0;
+}
+
+void findMinMax(struct Employee emp[], int n, int *mx, int *mn)
+{
+    int i;
+
+    *mx = emp[0].salary;
+    *mn = emp[0].salary;
+
+    for(i = 1; i < n; i++)
+    {
+        if(emp[i].salary > *mx)
+            *mx = emp[i].salary;
+
+        if(emp[i].salary < *mn)
+            *mn = emp[i].salary;
+    }
+}
+------------------------------------------------------------------------------------------
+101 30000
+102 50000
+103 25000
+104 60000
+Output:
+
+
+--- EMPLOYEE SALARY SUMMARY ---
+ID     | Salary
+-------|---------
+101    | 30000
+102    | 50000
+103    | 25000
+104    | 60000
+
+Maximum Salary Found: 60000
+Minimum Salary Found: 25000
+----------------------------------------------
+201 50000
+202 40000
+203 30000
+204 20000
+Output:
+
+
+--- EMPLOYEE SALARY SUMMARY ---
+ID     | Salary
+-------|---------
+101    | 30000
+102    | 50000
+103    | 25000
+104    | 60000
+
+Maximum Salary Found: 60000
+Minimum Salary Found: 25000
+----------------------------------------------
+301 35000
+302 35000
+303 35000
+304 35000
+Output:
+
+
+--- EMPLOYEE SALARY SUMMARY ---
+ID     | Salary
+-------|---------
+301    | 35000
+302    | 35000
+303    | 35000
+304    | 35000
+
+Maximum Salary Found: 35000
+Minimum Salary Found: 35000
+----------------------------------------------
+401 15000
+402 80000
+403 10000
+404 40000
+Output:
+
+
+--- EMPLOYEE SALARY SUMMARY ---
+ID     | Salary
+-------|---------
+401    | 15000
+402    | 80000
+403    | 10000
+404    | 40000
+
+Maximum Salary Found: 80000
+Minimum Salary Found: 10000
+
+
+
