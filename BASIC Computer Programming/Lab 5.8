@@ -1,0 +1,96 @@
+#include <stdio.h>
+
+struct Student {
+    int id;
+    int math;
+    int sci;
+    int eng;
+    int total;
+};
+
+void calcGrade(int total);
+void calcAvg(int total, float *avg);
+
+int main()
+{
+    struct Student st;
+    float avg = 0.0;
+
+    scanf("%d", &st.id);
+    scanf("%d", &st.math);
+    scanf("%d", &st.sci);
+    scanf("%d", &st.eng);
+
+    st.total = st.math + st.sci + st.eng;
+    calcAvg(st.total, &avg);
+
+    printf("\n--- STUDENT ACADEMIC REPORT ---\n");
+    printf("Student ID: %d\n", st.id);
+    printf("Scores: Math %d, Science %d, English %d\n",
+           st.math, st.sci, st.eng);
+    printf("Total Score: %d\n", st.total);
+    printf("Average Score: %.2f\n", avg);
+
+    calcGrade(st.total);
+
+    return 0;
+}
+
+void calcGrade(int total)
+{
+    if(total >= 250)
+        printf("Grade A");
+    else if(total >= 200)
+        printf("Grade B");
+    else
+        printf("Grade C");
+}
+
+void calcAvg(int total, float *avg)
+{
+    *avg = total / 3.0;
+}
+-----------------------------------------------------------------------
+111 90 85 95 
+Output:
+
+
+--- STUDENT ACADEMIC REPORT ---
+Student ID: 111
+Scores: Math 90, Science 85, English 95
+Total Score: 270
+Average Score: 90.00
+Grade A
+-----------------------------------------------------
+222 75 70 60 
+Output:
+
+
+--- STUDENT ACADEMIC REPORT ---
+Student ID: 222
+Scores: Math 75, Science 70, English 60
+Total Score: 205
+Average Score: 68.33
+Grade B
+-----------------------------------------------------
+333 50 40 50 
+Output:
+
+
+--- STUDENT ACADEMIC REPORT ---
+Student ID: 333
+Scores: Math 50, Science 40, English 50
+Total Score: 140
+Average Score: 46.67
+Grade C
+-----------------------------------------------------
+444 60 70 70 
+Output:
+
+
+--- STUDENT ACADEMIC REPORT ---
+Student ID: 444
+Scores: Math 60, Science 70, English 70
+Total Score: 200
+Average Score: 66.67
+Grade B
