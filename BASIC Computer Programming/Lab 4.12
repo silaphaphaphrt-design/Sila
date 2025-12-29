@@ -1,76 +1,77 @@
 #include <stdio.h>
+#define R 2
+#define C 3
 
 
-void get_input(int r, int c, int *mat, char name);
-void transpose(int r, int c, int *src, int *dest);
-void multiply(int r1, int c1, int c2, int *m1, int *m2, int *res);
-void show(int r, int c, int *mat);
-
-int main() {
-    int r = 2, c = 3; 
-    int a[2][3], b[2][3], bt[3][2], res[2][2];
-
-    get_input(r, c, (int *)a, 'A');
-    get_input(r, c, (int *)b, 'B');
-
-
-    transpose(r, c, (int *)b, (int *)bt);
-    multiply(r, c, r, (int *)a, (int *)bt, (int *)res);
-
-
-    printf("\n--- MATRIX MULTIPLICATION REPORT ---\n");
-    
-    printf("\nMatrix A (%dx%d):\n", r, c);
-    show(r, c, (int *)a);
-
-    printf("\nMatrix B (%dx%d):\n", r, c);
-    show(r, c, (int *)b);
-
-    printf("\nMatrix B Transposed (BT, %dx%d):\n", c, r);
-    show(c, r, (int *)bt);
-
-    printf("\nResult Matrix C (A x BT, %dx%d):\n", r, r);
-    show(r, r, (int *)res);
-
-    return 0;
-}
-
-void get_input(int r, int c, int *mat, char name) {
-
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            
-            scanf("%d", (mat + i * c + j));
+void transpose(int src[R][C], int dest[C][R]) {
+    for (int i = 0; i < R; i++) {
+        for (int j = 0; j < C; j++) {
+            dest[j][i] = src[i][j];
         }
     }
 }
 
-void transpose(int r, int c, int *src, int *dest) {
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            *(dest + j * r + i) = *(src + i * c + j);
-        }
-    }
-}
-
-void multiply(int r1, int c1, int c2, int *m1, int *m2, int *res) {
-    for (int i = 0; i < r1; i++) {
-        for (int j = 0; j < c2; j++) {
-            *(res + i * c2 + j) = 0;
-            for (int k = 0; k < c1; k++) {
-                *(res + i * c2 + j) += (*(m1 + i * c1 + k)) * (*(m2 + k * c2 + j));
+void multiply(int m1[R][C], int m2[C][R], int res[R][R]) {
+    for (int i = 0; i < R; i++) {
+        for (int j = 0; j < R; j++) {
+            res[i][j] = 0;
+            for (int k = 0; k < C; k++) {
+                res[i][j] += m1[i][k] * m2[k][j];
             }
         }
     }
 }
 
-void show(int r, int c, int *mat) {
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            printf("%d ", *(mat + i * c + j)); // ใช้ช่องว่างแทน Tab เพื่อให้เหมือนรูป
+void show(int rows, int cols, int *mat) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+
+            printf("%d%s", *(mat + i * cols + j), (j == cols - 1) ? "" : " ");
         }
         printf("\n");
     }
+}
+
+int main() {
+    int A[R][C], B[R][C], BT[C][R], Res[R][R];
+
+
+    for (int i = 0; i < R; i++) {
+        for (int j = 0; j < C; j++) {
+            scanf("%d", &A[i][j]);
+        }
+    }
+
+
+    for (int i = 0; i < R; i++) {
+        for (int j = 0; j < C; j++) {
+            scanf("%d", &B[i][j]);
+        }
+    }
+
+  
+    transpose(B, BT);
+    multiply(A, BT, Res);
+
+  
+    printf("--- MATRIX MULTIPLICATION REPORT ---\n\n");
+
+    printf("Matrix A (2x3):\n");
+    show(R, C, (int *)A);
+    printf("\n");
+
+    printf("Matrix B (2x3):\n");
+    show(R, C, (int *)B);
+    printf("\n");
+
+    printf("Matrix B Transposed (BT, 3x2):\n");
+    show(C, R, (int *)BT);
+    printf("\n");
+
+    printf("Result Matrix C (A x BT, 2x2):\n");
+    show(R, R, (int *)Res);
+
+    return 0;
 }
 -----------------------------------------------------------------------------------------------------------------------
 1 2 3 4 5 6 7 8 9 10 11 12
