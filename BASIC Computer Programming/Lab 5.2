@@ -1,0 +1,105 @@
+#include <stdio.h>
+
+struct Employee {
+  int id, gross_salary, bonus, total_income;
+};
+
+int calculate_net_salary(int total_income);
+
+int main() {
+  struct Employee emp;
+  int net_salary;
+  
+  printf("Enter Employee ID: \n");
+  scanf("%d", &emp.id);
+  
+  printf("Enter Gross Salary: \n");
+  scanf("%d", &emp.gross_salary);
+  
+  printf("Enter Bonus: ");
+  scanf("%d", &emp.bonus);
+  
+  emp.total_income = emp.gross_salary + emp.bonus;
+  net_salary = calculate_net_salary(emp.total_income);
+  
+  printf("\n--- EMPLOYEE SALARY REPORT ---\n");
+  printf("ID: %d\n", emp.id);
+  printf("Gross Salary: %d\n", emp.gross_salary);
+  printf("Bonus: %d\n", emp.bonus);
+  printf("Total Income: %d\n", emp.total_income);
+  printf("Net Salary: %d\n", net_salary);
+
+  return 0;
+}
+  int calculate_net_salary(int total_income) {
+  int tax_amount;
+  int net_salary;
+    
+    if (total_income > 30000) {
+      tax_amount = (int)(total_income * 0.10);
+    } else {
+      tax_amount = (int)(total_income * 0.05);
+    }
+  net_salary = total_income - tax_amount;
+  return net_salary;
+  }
+--------------------------------------------------------------------------
+1001
+40000
+5000
+Output:
+
+Enter Employee ID: 
+Enter Gross Salary: 
+Enter Bonus: 
+--- EMPLOYEE SALARY REPORT ---
+ID: 1001
+Gross Salary: 40000
+Bonus: 5000
+Total Income: 45000
+Net Salary: 40500
+--------------------------------------------------
+1002
+25000
+1000
+Output:
+
+Enter Employee ID: 
+Enter Gross Salary: 
+Enter Bonus: 
+--- EMPLOYEE SALARY REPORT ---
+ID: 1002
+Gross Salary: 25000
+Bonus: 1000
+Total Income: 26000
+Net Salary: 24700
+--------------------------------------------------
+1003
+28000
+2000
+Output:
+
+Enter Employee ID: 
+Enter Gross Salary: 
+Enter Bonus: 
+--- EMPLOYEE SALARY REPORT ---
+ID: 1003
+Gross Salary: 28000
+Bonus: 2000
+Total Income: 30000
+Net Salary: 28500
+--------------------------------------------------
+1004
+30000
+1
+Output:
+
+Enter Employee ID: 
+Enter Gross Salary: 
+Enter Bonus: 
+--- EMPLOYEE SALARY REPORT ---
+ID: 1004
+Gross Salary: 30000
+Bonus: 1
+Total Income: 30001
+Net Salary: 27001
