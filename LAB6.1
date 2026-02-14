@@ -1,0 +1,160 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct studentNode {
+    char name[20];
+    int age;
+    char sex;
+    float gpa;
+    struct studentNode *next;
+    struct studentNode *back;
+};
+
+
+struct studentNode* AddNode(struct studentNode **start,
+                             char name[], int age, char sex, float gpa);
+
+void InsNode(struct studentNode *now,
+             char name[], int age, char sex, float gpa);
+
+void GoBack(struct studentNode **now);
+
+struct studentNode* DelNode(struct studentNode *now);
+
+void ShowAll(struct studentNode *walk);
+
+
+
+int main() {
+
+    struct studentNode *start, *now;
+
+    start = NULL;
+
+    now = AddNode(&start, "one", 6, 'M', 3.11);
+    ShowAll(start);
+
+    now = AddNode(&start, "two", 8, 'F', 3.22);
+    ShowAll(start);
+
+    InsNode(now, "three", 10, 'M', 3.33);
+    ShowAll(start);
+
+    InsNode(now, "four", 12, 'F', 3.44);
+    ShowAll(start);
+
+    GoBack(&now);
+
+    now = DelNode(now);
+    ShowAll(start);
+
+    now = DelNode(now);
+    ShowAll(start);
+
+    now = DelNode(now);
+    ShowAll(start);
+
+    return 0;
+}
+
+
+//AddNode 
+struct studentNode* AddNode(struct studentNode **start,
+                             char name[], int age, char sex, float gpa)
+{
+    struct studentNode *newNode, *walk;
+
+    newNode = (struct studentNode*)malloc(sizeof(struct studentNode));
+
+    strcpy(newNode->name, name);
+    newNode->age = age;
+    newNode->sex = sex;
+    newNode->gpa = gpa;
+    newNode->next = NULL;
+    newNode->back = NULL;
+
+    if(*start == NULL){
+        *start = newNode;
+    }
+    else{
+        walk = *start;
+        while(walk->next != NULL)
+            walk = walk->next;
+
+        walk->next = newNode;
+        newNode->back = walk;
+    }
+
+    return newNode;
+}
+
+
+//Insert
+void InsNode(struct studentNode *now,
+             char name[], int age, char sex, float gpa)
+{
+    struct studentNode *newNode;
+
+    newNode = (struct studentNode*)malloc(sizeof(struct studentNode));
+
+    strcpy(newNode->name, name);
+    newNode->age = age;
+    newNode->sex = sex;
+    newNode->gpa = gpa;
+
+    newNode->next = now;
+    newNode->back = now->back;
+
+    if(now->back != NULL)
+        now->back->next = newNode;
+
+    now->back = newNode;
+}
+
+
+//GoBack
+void GoBack(struct studentNode **now)
+{
+    if((*now)->back != NULL)
+        *now = (*now)->back;
+}
+
+//delete Node
+struct studentNode* DelNode(struct studentNode *now)
+{
+    struct studentNode *temp;
+
+    if(now == NULL)
+        return NULL;
+
+    if(now->back != NULL)
+        now->back->next = now->next;
+
+    if(now->next != NULL)
+        now->next->back = now->back;
+
+    temp = now->next;
+    free(now);
+
+    return temp;
+}
+
+
+//แสดงผลทั้งหมด 
+void ShowAll(struct studentNode *walk)
+{
+    while(walk != NULL){
+        printf("%s ", walk->name);
+        walk = walk->next;
+    }
+    printf("\n");
+}
+-----------------------------------------------------------------------------------
+one 
+one two
+one three two
+one three four two
+one three two
+one three
+one three
