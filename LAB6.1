@@ -11,145 +11,124 @@ struct studentNode {
     struct studentNode *back;
 };
 
-
-struct studentNode* AddNode(struct studentNode **start,
-                             char name[], int age, char sex, float gpa);
-
-void InsNode(struct studentNode *now,
-             char name[], int age, char sex, float gpa);
-
-void GoBack(struct studentNode **now);
-
-struct studentNode* DelNode(struct studentNode *now);
-
-void ShowAll(struct studentNode *walk);
-
-
+void show(struct studentNode *p);
+struct studentNode* add(struct studentNode **head, char *name, int age, char sex, float gpa);
+void insert(struct studentNode *cur, char *name, int age, char sex, float gpa, struct studentNode **head);
+void back(struct studentNode **cur);
+void del(struct studentNode **cur, struct studentNode **head);
 
 int main() {
 
-    struct studentNode *start, *now;
+    struct studentNode *head = NULL;
+    struct studentNode *cur = NULL;
 
-    start = NULL;
+    cur = add(&head, "one", 6, 'M', 3.11);
+    show(head);
 
-    now = AddNode(&start, "one", 6, 'M', 3.11);
-    ShowAll(start);
+    cur = add(&head, "two", 8, 'F', 3.22);
+    show(head);
 
-    now = AddNode(&start, "two", 8, 'F', 3.22);
-    ShowAll(start);
+    insert(cur, "three", 10, 'M', 3.33, &head);
+    show(head);
 
-    InsNode(now, "three", 10, 'M', 3.33);
-    ShowAll(start);
+    insert(cur, "four", 12, 'F', 3.44, &head);
+    show(head);
 
-    InsNode(now, "four", 12, 'F', 3.44);
-    ShowAll(start);
+    back(&cur);
 
-    GoBack(&now);
+    del(&cur, &head);
+    show(head);
 
-    now = DelNode(now);
-    ShowAll(start);
+    del(&cur, &head);
+    show(head);
 
-    now = DelNode(now);
-    ShowAll(start);
-
-    now = DelNode(now);
-    ShowAll(start);
+    del(&cur, &head);
+    show(head);
 
     return 0;
 }
 
-
-//AddNode 
-struct studentNode* AddNode(struct studentNode **start,
-                             char name[], int age, char sex, float gpa)
-{
-    struct studentNode *newNode, *walk;
-
-    newNode = (struct studentNode*)malloc(sizeof(struct studentNode));
-
-    strcpy(newNode->name, name);
-    newNode->age = age;
-    newNode->sex = sex;
-    newNode->gpa = gpa;
-    newNode->next = NULL;
-    newNode->back = NULL;
-
-    if(*start == NULL){
-        *start = newNode;
-    }
-    else{
-        walk = *start;
-        while(walk->next != NULL)
-            walk = walk->next;
-
-        walk->next = newNode;
-        newNode->back = walk;
-    }
-
-    return newNode;
-}
-
-
-//Insert
-void InsNode(struct studentNode *now,
-             char name[], int age, char sex, float gpa)
-{
-    struct studentNode *newNode;
-
-    newNode = (struct studentNode*)malloc(sizeof(struct studentNode));
-
-    strcpy(newNode->name, name);
-    newNode->age = age;
-    newNode->sex = sex;
-    newNode->gpa = gpa;
-
-    newNode->next = now;
-    newNode->back = now->back;
-
-    if(now->back != NULL)
-        now->back->next = newNode;
-
-    now->back = newNode;
-}
-
-
-//GoBack
-void GoBack(struct studentNode **now)
-{
-    if((*now)->back != NULL)
-        *now = (*now)->back;
-}
-
-//delete Node
-struct studentNode* DelNode(struct studentNode *now)
-{
-    struct studentNode *temp;
-
-    if(now == NULL)
-        return NULL;
-
-    if(now->back != NULL)
-        now->back->next = now->next;
-
-    if(now->next != NULL)
-        now->next->back = now->back;
-
-    temp = now->next;
-    free(now);
-
-    return temp;
-}
-
-
-//แสดงผลทั้งหมด 
-void ShowAll(struct studentNode *walk)
-{
-    while(walk != NULL){
-        printf("%s ", walk->name);
-        walk = walk->next;
+void show(struct studentNode *p) {
+    while (p != NULL) {
+        printf("%s ", p->name);
+        p = p->next;
     }
     printf("\n");
 }
+
+struct studentNode* add(struct studentNode **head, char *name, int age, char sex, float gpa) {
+
+    struct studentNode *n = malloc(sizeof(struct studentNode));
+
+    strcpy(n->name, name);
+    n->age = age;
+    n->sex = sex;
+    n->gpa = gpa;
+    n->next = NULL;
+    n->back = NULL;
+
+    if (*head == NULL) {
+        *head = n;
+    } else {
+        struct studentNode *t = *head;
+        while (t->next != NULL)
+            t = t->next;
+
+        t->next = n;
+        n->back = t;
+    }
+
+    return n;
+}
+
+void insert(struct studentNode *cur, char *name, int age, char sex, float gpa, struct studentNode **head) {
+
+    struct studentNode *n = malloc(sizeof(struct studentNode));
+
+    strcpy(n->name, name);
+    n->age = age;
+    n->sex = sex;
+    n->gpa = gpa;
+
+    n->next = cur;
+    n->back = cur->back;
+
+    if (cur->back != NULL)
+        cur->back->next = n;
+    else
+        *head = n;
+
+    cur->back = n;
+}
+
+void back(struct studentNode **cur) {
+    if (*cur != NULL && (*cur)->back != NULL)
+        *cur = (*cur)->back;
+}
+
+void del(struct studentNode **cur, struct studentNode **head) {
+
+    if (*cur == NULL)
+        return;
+
+    struct studentNode *temp;
+
+    if ((*cur)->back != NULL)
+        (*cur)->back->next = (*cur)->next;
+    else
+        *head = (*cur)->next;
+
+    if ((*cur)->next != NULL) {
+        (*cur)->next->back = (*cur)->back;
+        temp = (*cur)->next;
+    } else {
+        temp = (*cur)->back;
+    }
+
+    free(*cur);
+    *cur = temp;
+}
+
 -----------------------------------------------------------------------------------
 one 
 one two
