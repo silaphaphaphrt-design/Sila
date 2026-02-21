@@ -1,0 +1,137 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct Node {
+    char n[20];
+    int a;
+    char s;
+    float g;
+    struct Node *next;
+};
+
+class List {
+protected:
+    struct Node *head, *cur;
+
+public:
+    List();
+    ~List();
+    void add(const char name[], int age, char sex, float gpa);
+    void nextNode();
+    virtual void show();
+    void remove();
+};
+
+class List2 : public List {
+public:
+    void first();
+    virtual void show();
+};
+
+List::List() {
+    head = NULL;
+    cur = NULL;
+}
+
+List::~List() {
+    while (head != NULL) {
+        Node *tmp = head;
+        head = head->next;
+        free(tmp);
+    }
+}
+
+int main() {
+    List A;
+    List2 B;
+    List *C;
+
+    A.add("one", 1, 'A', 1.1);
+    A.add("two", 2, 'B', 2.2);
+    A.add("three", 3, 'C', 3.3);
+    A.nextNode();
+    A.show();
+
+    B.add("four", 4, 'D', 4.4);
+    B.add("five", 5, 'E', 5.5);
+    B.add("six", 6, 'F', 6.6);
+    B.nextNode();
+    B.remove();
+    B.show();
+
+    C = &A;
+    C->nextNode();
+    C->show();
+
+    C = &B;
+    C->show();
+
+    return 0;
+}
+
+void List::add(const char name[], int age, char sex, float gpa) {
+    Node *newNode = (Node*)malloc(sizeof(Node));
+
+    strcpy(newNode->n, name);
+    newNode->a = age;
+    newNode->s = sex;
+    newNode->g = gpa;
+    newNode->next = NULL;
+
+    if (head == NULL) {
+        head = newNode;
+        cur = head;
+    } else {
+        Node *tmp = head;
+        while (tmp->next != NULL) {
+            tmp = tmp->next;
+        }
+        tmp->next = newNode;
+    }
+}
+
+void List::nextNode() {
+    if (cur != NULL) {
+        cur = cur->next;
+    }
+}
+
+void List::remove() {
+    if (cur == NULL) return;
+
+    if (cur == head) {
+        head = head->next;
+        free(cur);
+        cur = head;
+    } else {
+        Node *tmp = head;
+        while (tmp->next != cur) {
+            tmp = tmp->next;
+        }
+        tmp->next = cur->next;
+        free(cur);
+        cur = tmp->next;
+    }
+}
+
+void List::show() {
+    if (cur != NULL) {
+        printf("%s %d %c %.2f\n", cur->n, cur->a, cur->s, cur->g);
+    }
+}
+
+void List2::first() {
+    cur = head;
+}
+
+void List2::show() {
+    if (cur != NULL) {
+        printf("%s %d %.2f\n", cur->n, cur->a, cur->g);
+    }
+}
+-------------------------------------------------------------------------------------
+two 2 B 2.20
+six four
+one 1 A 1.10
+six four
