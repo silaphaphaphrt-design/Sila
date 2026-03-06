@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int *GreedyKnapsack(int *weight, int *value, int n, int maxW);
+int ChooseItem(int *weight, int *value, int *available, int n);
+
+int main() {
+
+    int n = 5, maxW = 11;
+
+    int weight[5] = {1,2,5,6,7};
+    int value[5] = {1,6,18,22,28};
+
+    int *result = GreedyKnapsack(weight, value, n, maxW);
+
+    for(int i = 0; i < n; i++){
+        printf("%d ", result[i]);
+    }
+
+    free(result);
+    return 0;
+}
+
+int *GreedyKnapsack(int *weight, int *value, int n, int maxW){
+
+    int *select = (int*)calloc(n, sizeof(int));
+    int *remain = (int*)malloc(n*sizeof(int));
+
+    for(int i = 0; i < n; i++){
+        remain[i] = 1;
+    }
+
+    int totalW = 0;
+
+    while(totalW < maxW){
+
+        int idx = ChooseItem(weight, value, remain, n);
+
+        if(idx < 0) break;
+
+        if(totalW + weight[idx] <= maxW){
+            select[idx] = 1;
+            totalW += weight[idx];
+        }
+
+        remain[idx] = 0;
+    }
+
+    free(remain);
+    return select;
+}
+
+int ChooseItem(int *weight, int *value, int *available, int n){
+
+    int pos = -1;
+    double maxRatio = -1;
+
+    for(int i = 0; i < n; i++){
+
+        if(available[i]){
+
+            double r = (double)value[i] / weight[i];
+
+            if(r > maxRatio){
+                maxRatio = r;
+                pos = i;
+            }
+        }
+    }
+
+    return pos;
+}
+------------------------------------------------------
+1 1 0 0 1
