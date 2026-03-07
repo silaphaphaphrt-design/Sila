@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int *solveKnapsack(int *weight, int *value, int n, int capacity);
+
+int main() {
+
+    int n = 5;
+    int capacity = 11;
+
+    int weight[5] = {1,2,5,6,7};
+    int value[5]  = {1,6,18,22,28};
+
+    int *result = solveKnapsack(weight, value, n, capacity);
+
+    for(int i = 0; i < n; i++){
+        printf("%d ", result[i]);
+    }
+
+    free(result);
+    return 0;
+}
+
+int *solveKnapsack(int *weight, int *value, int n, int capacity){
+
+    int **table = (int**)malloc((n+1) * sizeof(int*));
+
+    for(int i = 0; i <= n; i++){
+        table[i] = (int*)calloc(capacity+1 , sizeof(int));
+    }
+
+    for(int item = 1; item <= n; item++){
+
+        for(int cap = 1; cap <= capacity; cap++){
+
+            if(cap < weight[item-1]){
+                table[item][cap] = table[item-1][cap];
+            }
+            else{
+
+                int include = value[item-1] + table[item-1][cap-weight[item-1]];
+                int exclude = table[item-1][cap];
+
+                table[item][cap] = (include > exclude) ? include : exclude;
+            }
+        }
+    }
+
+    int *answer = (int*)calloc(n , sizeof(int));
+
+    int cap = capacity;
+
+    for(int item = n; item > 0; item--){
+
+        if(table[item][cap] != table[item-1][cap]){
+            answer[item-1] = 1;
+            cap -= weight[item-1];
+        }
+    }
+
+    for(int i = 0; i <= n; i++){
+        free(table[i]);
+    }
+
+    free(table);
+
+    return answer;
+}
+-------------------------------------------------------------------------------
+0 0 1 1 0
