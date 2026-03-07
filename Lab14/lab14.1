@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int knapsackBT(int *weight, int *value, int totalItem, int capacity, int idx, int *result);
+
+int main() {
+    int totalItem = 5;
+    int capacity = 11;
+
+    int weight[5] = {1,2,5,6,7};
+    int value[5] = {1,6,18,22,22};
+
+    int *result = (int*)malloc(sizeof(int) * totalItem);
+
+    int bestValue = knapsackBT(weight, value, totalItem, capacity, 0, result);
+
+    printf("Value = %d\n", bestValue);
+
+    for(int i = 0; i < totalItem; i++){
+        printf("%d ", result[i]);
+    }
+
+    return 0;
+}
+
+int knapsackBT(int *weight, int *value, int totalItem, int capacity, int idx, int *result){
+
+    if(idx >= totalItem){
+        return 0;
+    }
+
+    int caseSkip[totalItem];
+    int caseTake[totalItem];
+
+    for(int i = 0; i < totalItem; i++){
+        caseSkip[i] = result[i];
+        caseTake[i] = result[i];
+    }
+
+    caseSkip[idx] = 0;
+
+    int valueSkip = knapsackBT(weight, value, totalItem, capacity, idx + 1, caseSkip);
+
+    int valueTake = 0;
+
+    if(weight[idx] <= capacity){
+        caseTake[idx] = 1;
+        valueTake = value[idx] + knapsackBT(weight, value, totalItem, capacity - weight[idx], idx + 1, caseTake);
+    }
+
+    if(valueTake > valueSkip){
+        for(int i = 0; i < totalItem; i++){
+            result[i] = caseTake[i];
+        }
+        return valueTake;
+    }
+    else{
+        for(int i = 0; i < totalItem; i++){
+            result[i] = caseSkip[i];
+        }
+        return valueSkip;
+    }
+}
+----------------------------------------------------------------------
+Value = 40
+0 0 1 1 0 
